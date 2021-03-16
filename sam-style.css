@@ -1,0 +1,487 @@
+/*CSS Sam Framework by Samuel B.*/
+body {
+	font-family: 'Montserrat', sans-serif;
+	font-family: 24px;
+	overflow: hidden;
+
+	--maincolor: #d3d3d3;
+	--secondcolor: #ececec;
+	--labelcolor: #272727;
+
+	--primarycolor: #12D4CC;
+
+	--hover: brightness(90%);
+	--scrollbarcolor: rgba(200, 200, 200, 0.63);
+	--borderradius-component: 4px;
+	--padding-component: 8px;
+}
+
+body:not(.style-scope)[dark] {
+	--maincolor: #272727; /* 272727 */
+	--secondcolor: #414141; /* #414141 */
+	--labelcolor: white;
+
+    --primarycolor: #12D4CC;
+
+	--hover: brightness(120%); /*90*/
+	--scrollbarcolor: rgba(21, 20, 26, 0.63); /*rgb(21 20 26 / 63%)*/
+	--borderradius-component: 4px;
+	--padding-component: 8px;
+}
+
+/*
+	List:
+	1. Components
+		1.1 Checkbox
+		1.2 Table
+		1.3 Collapse
+		1.4 File-Input
+		1.5 Tags
+		1.6 Tooltip
+	2. html main components
+	3. Classes
+*/
+
+
+/*
+	1. Components
+*/
+
+:is(textarea, input, select, button, th, tr):hover {
+	filter: var(--hover);
+}
+
+input {
+	width: 100%;
+	box-sizing: border-box;
+	/* height: 25px; */
+	background-color: var(--maincolor);
+	color: var(--labelcolor);
+	padding: var(--padding-component);
+	border: none;
+	border-radius: 4px;
+	/* text-align: center; */
+}
+
+select {
+	width: 100%;
+	box-sizing: border-box;
+	/* padding: 1px 2px; */
+	/* height: 25px; */
+	color: var(--labelcolor);
+    background-color: var(--maincolor);
+	padding: var(--padding-component);
+	border: none;
+	border-radius: var(--borderradius-component);
+}
+
+select:focus, input[list]:focus {
+	border-radius: 4px 4px 0px 0px;
+}
+
+textarea {
+	width: 100%;
+	box-sizing: border-box;
+    background-color: var(--maincolor);
+    color: var(--labelcolor);
+	padding: var(--padding-component);
+    border: none;
+	border-radius: var(--borderradius-component);
+    /* resize: none; */
+}
+
+button {
+	/* width: 100%; */
+	cursor: pointer;
+    background-color: var(--maincolor);
+    color: var(--labelcolor);
+	padding: var(--padding-component);
+    border: none;
+	border-radius: var(--borderradius-component);
+}
+
+/*
+	1.1 Checkbox
+*/
+
+/* Customize the label (the container) */
+.container {
+	position: relative;
+	cursor: pointer;
+	font-size: 20px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+  
+/* Hide the browser's default checkbox */
+.container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+  
+/* Create a custom checkbox */
+.checkmark {
+	position: absolute;
+	/* bottom: 2px; */
+	/* left: 0; */
+	margin-left: 10px;
+	height: 28px; /*20 20*/
+	width: 28px;
+	background-color: var(--labelcolor); /*#eee*/
+	border-radius: var(--borderradius-component);
+}
+  
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+	filter: var(--hover);
+}
+  
+/* When the checkbox is checked, add a blue background */
+/*.container input:checked ~*/ .checkmark {
+	background-color: var(--maincolor); /*#2196F3*/
+}
+  
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+  
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+	display: block;
+}
+  
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+	left: 9px; /*5 2 5 10*/
+	top: 6px;
+	width: 6px;
+	height: 10px;
+	border: solid var(--labelcolor);
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+/*
+	1.2 Table
+*/
+
+table {
+	border-spacing: 0;
+	width: 100%;
+	color: var(--labelcolor);
+	/* border: 1px solid var(--secondcolor); */
+}
+
+th, td {
+	text-align: left;
+	padding: var(--padding-component); /*16px*/
+}
+
+tr:nth-child(odd) {
+	background-color: var(--secondcolor);
+}
+
+tr:nth-child(even) {
+	background-color: var(--maincolor);
+}
+
+table thead th {
+	position: sticky;
+	top: 0;
+	background-color: var(--maincolor);
+	z-index: 2;
+}
+
+/*
+	1.3 Collapse
+*/
+
+.collapsible {
+	background-color: var(--maincolor);
+	color: var(--labelcolor);
+	cursor: pointer;
+	padding: var(--padding-component);
+	width: 100%;
+	/* height: 50px; */
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+	border: none;
+	border-radius: var(--borderradius-component);
+}
+.activecollapsible {
+	border-radius: 4px 4px 0px 0px;
+}
+
+/* .activecollapsible {
+	background-color: var(--hover);
+} */
+
+.collapsible:after {
+	content: '\002B';
+	color: var(--labelcolor);
+	font-weight: bold;
+	float: right;
+	margin-left: 5px;
+}
+
+.activecollapsible:after {
+	content: "\2212";
+}
+
+.collapsiblecontent {
+	padding: 0 var(--padding-component); /*18px*/
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+	background-color: var(--secondcolor);
+	color: var(--labelcolor);
+	border: none;
+	border-radius: 0px 0px 4px 4px;
+}
+
+
+/* 
+	1.4 File-Input
+*/
+
+/* Hide browser default file input*/
+#file {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 100%;
+	overflow: hidden;
+	position: relative;
+	z-index: -1;
+}
+  
+.inputfile + label {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	cursor: pointer;
+	max-width: 80%;
+	/* font-size: 1.25rem; */
+	font-size: 16px;
+	font-weight: 450; /*700*/
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	cursor: pointer;
+	display: inline-block;
+	overflow: hidden;
+	/* padding: 0.625rem 1.25rem; */
+	padding: var(--padding-component);
+	color: var(--labelcolor);
+	background-color: var(--maincolor);
+	border: none;
+	border-radius: var(--borderradius-component);
+}
+  
+.inputfile + label:hover{filter: var(--hover);}
+  
+.inputfile:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+  }
+  
+.inputfile + label * {
+	pointer-events: none;
+}
+  
+.inputfile + label svg {
+	width: 1em;
+	height: 1em;
+	vertical-align: middle;
+	fill: var(--labelcolor);
+	margin-top: -0.25em;
+	margin-right: 0.25em;
+}
+
+/*
+	1.5 Tags
+*/
+
+.tags-input {
+    border: 1px solid var(--secondcolor);
+	color: var(--labelcolor);
+	background-color: var(--maincolor);
+	border-radius: var(--borderradius-component);
+	padding: var(--padding-component);
+    display: inline-block;
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.main-input {
+	width: 350px;
+}
+
+.tags-input .tag {
+    font-size: 85%;
+    padding: 0.5em 0.75em;
+    margin: 0.25em 0.2em;
+    display: inline-block;
+    background-color: var(--secondcolor);
+	border-radius: var(--borderradius-component);
+    transition: all 0.1s linear;
+    cursor: pointer;
+}
+
+.tags-input .tag:hover {
+    background-color: var(--primarycolor); /*#3af*/
+    color: white;
+}
+
+.tags-input .tag .close::after {
+    content: '×';
+    font-weight: bold;
+    display: inline-block;
+    transform: scale(1.4);
+    margin-left: 0.75em;
+}
+
+.tags-input .tag .close:hover::after {
+    color: red;
+}
+
+.tags-input .main-input {
+    border: 0;
+    outline: 0;
+    padding: 0.5em 0.1em;
+}
+
+/*
+	1.6 Tooltip
+*/
+
+/* Tooltip container */
+.tooltip {
+/* color: var(--labelcolor); */
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* color: var(--labelcolor); */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: var(--maincolor);
+  color: var(--labelcolor);
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  box-shadow: 0px 0px 2px 0px var(--labelcolor);
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--maincolor) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+
+/*
+	2. html main components
+*/
+
+::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 10px;
+}
+   
+::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbarcolor);
+    border-radius: 10px;
+}
+
+::placeholder { 
+	color: var(--labelcolor);
+	opacity: .8;
+}
+
+/*
+	3. Classes
+*/
+
+.withscrollbarY {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.withscrollbarX {
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+
+.vertical-center {
+	width: 50%;
+	margin: 0 auto;
+	/* margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%); */
+	/* align-items: center */
+}
+
+.horizontal-center {
+	margin: 0 auto;
+	/* display: flex;
+	justify-content: center; */
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.nooutline {
+    outline: none;
+}
+
+
+
+
