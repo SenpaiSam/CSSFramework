@@ -387,6 +387,26 @@ function closeAllSelect(elmnt) {
   }
 }
 
+
+function loadSelect(id,value) {
+  var a = document.getElementById(id);
+  var selctindex = 0;
+  var displayval = a.getElementsByClassName("select-selected")[0];
+  var coptions = a.getElementsByClassName("select-items")[0].childNodes;
+  var options = a.getElementsByTagName("select")[0].getElementsByTagName("option");
+  for (let index = 0; index < options.length; index++) {
+    if(options[index].value == value) {
+      selctindex = index-1;
+      displayval.innerHTML = options[index].innerHTML;
+    }  
+  }
+  for (let index = 0; index < coptions.length; index++) {
+    if(index == selctindex) {
+      coptions[index].classList.add("same-as-selected");
+    }  
+  }
+}
+
 /* If the user clicks anywhere outside the select box,
 then close all select boxes: */
 document.addEventListener("click", closeAllSelect);
