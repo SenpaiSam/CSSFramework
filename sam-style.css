@@ -15,6 +15,8 @@ body {
 	--scrollbarcolor: rgba(200, 200, 200, 0.63);
 	--borderradius-component: 4px;
 	--padding-component: 8px;
+
+	--bordercolor-component: 0,0,0;
 }
 
 body:not(.style-scope)[dark] {
@@ -28,6 +30,8 @@ body:not(.style-scope)[dark] {
 	--scrollbarcolor: rgba(21, 20, 26, 0.63); /*rgb(21 20 26 / 63%)*/
 	--borderradius-component: 4px;
 	--padding-component: 8px;
+
+	--bordercolor-component: 255,255,255;
 }
 
 /*
@@ -69,13 +73,13 @@ input {
 select {
 	width: 100%;
 	box-sizing: border-box;
-	/* padding: 1px 2px; */
-	/* height: 25px; */
 	color: var(--labelcolor);
     background-color: var(--maincolor);
 	padding: var(--padding-component);
 	border: none;
 	border-radius: var(--borderradius-component);
+	/* padding: 1px 2px; */
+	/* height: 25px; */
 }
 
 select:focus, input[list]:focus {
@@ -424,6 +428,80 @@ table thead th {
 }
 
 
+/*
+	1.7 Custom Select
+*/
+
+/* The container must be positioned relative: */
+.custom-select {
+	position: relative;
+	font-family: Arial;
+}
+  
+.custom-select select {
+	display: none; /*hide original SELECT element: */
+}
+  
+.select-selected {
+	background-color: var(--maincolor);
+	border-radius: var(--borderradius-component);
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+	position: absolute;
+	content: "";
+	top: 14px;
+	right: 10px;
+	width: 0;
+	height: 0;
+	border: 6px solid transparent;
+	border-color: var(--labelcolor) transparent transparent transparent;
+}
+.select-arrow-active {
+	border-radius: var(--borderradius-component) var(--borderradius-component) 0px 0px;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+	border-color: transparent transparent var(--labelcolor) transparent;
+	top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+	color: var(--labelcolor);
+	padding: 8px 16px;
+	border: 1px solid transparent;
+	border-color: transparent transparent rgba(var(--bordercolor-component), 0.1) transparent;
+	cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+	position: absolute;
+	background-color: var(--maincolor);
+	top: 100%;
+	left: 0;
+	right: 0;
+	z-index: 99;
+	border: 1px solid rgba(var(--bordercolor-component), 0.3);
+	border-radius: 0px 0px var(--borderradius-component) var(--borderradius-component);
+	max-height: 300px;
+	overflow-y: scroll;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+	display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+	background-color: rgba(var(--bordercolor-component), 0.1);
+}
+
+
+
 
 /*
 	2. html main components
@@ -473,6 +551,8 @@ table thead th {
 .nooutline {
     outline: none;
 }
+
+
 
 
 
