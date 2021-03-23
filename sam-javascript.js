@@ -307,6 +307,17 @@ function initCustomSelect() {
   x = document.getElementsByClassName("custom-select");
   l = x.length;
   for (i = 0; i < l; i++) {
+    //Delete old Divs
+    var oldDiv = x[i].getElementsByClassName("select-selected");
+    var oldDiv2 = x[i].getElementsByClassName("select-items");
+    for (let index = 0; index < oldDiv.length; index++) {
+      oldDiv[index].remove();
+    }
+    for (let index = 0; index < oldDiv2.length; index++) {
+      oldDiv2[index].remove();
+    }
+
+
     selElmnt = x[i].getElementsByTagName("select")[0];
     ll = selElmnt.length;
   
