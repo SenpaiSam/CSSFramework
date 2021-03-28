@@ -5,38 +5,74 @@ body {
 	font-family: 24px;
 	overflow: hidden;
 
-	--maincolor: #d3d3d3;
-	--secondcolor: #ececec;
-	--labelcolor: #272727;
+	--Background: #FFFFFF;
+	--Surface: #FFFFFF;
 
-	--primarycolor: #12D4CC;
+	--Primary: #BB86FC;
+	--Secondary: #03DAC6;
 
-	--hover: brightness(90%);
-	--scrollbarcolor: rgba(200, 200, 200, 0.63);
-	--borderradius-component: 4px;
-	--padding-component: 8px;
+	
+	/*Typography and iconography*/
+	--OnBackground: 0, 0, 0;
+	--OnSurface: 0, 0, 0;
+	--OnPrimary: 0, 0, 0;
+	--OnSecondary: 0, 0, 0;
+	
+	--High-emphasis: 87%;
+	--Medium-emphasis: 60%;
+	--Disabled-text: 38%;
 
-	--bordercolor-component: 0,0,0;
+	--dp01: 5%;
+	--dp06: 11%;
+	--dp24: 16%;
+
+	--hover: brightness(120%); /*Not working on light theme*/
+	--borderradius-component: 0.4em; /*4px*/
+	--padding-component: 0.7em; /*8px*/
+
+	color: rgba(var(--OnBackground),var(--High-emphasis));
 }
 
+
 body:not(.style-scope)[dark] {
-	--maincolor: #272727; /* 272727 */
-	--secondcolor: #414141; /* #414141 */
-	--labelcolor: white;
+	font-family: 'Montserrat', sans-serif;
+	font-family: 24px;
+	overflow: hidden;
 
-    --primarycolor: #12D4CC;
+	--Background: #121212;
+	--Surface: #121212;
 
-	--hover: brightness(120%); /*90*/
-	--scrollbarcolor: rgba(21, 20, 26, 0.63); /*rgb(21 20 26 / 63%)*/
-	--borderradius-component: 4px;
-	--padding-component: 8px;
+	--Primary: #BB86FC;
+	--Secondary: #03DAC6;
 
-	--bordercolor-component: 255,255,255;
+	
+	/*Typography and iconography*/
+	--OnBackground: 255, 255, 255;
+	--OnSurface: 255, 255, 255;
+	--OnPrimary: #000000;
+	--OnSecondary: #000000;
+	
+	--High-emphasis: 87%;
+	--Medium-emphasis: 60%;
+	--Disabled-text: 38%;
+
+	--dp01: 5%;
+	--dp06: 11%;
+	--dp24: 16%;
+
+
+	--hover: brightness(80%);
+	--borderradius-component: 0.4em;
+	--padding-component: 0.7em;
+
+
+	/* background-color: var(--Background); */
+	background-color: #1E1E1E;
+	color: rgba(var(--OnBackground),var(--High-emphasis));
 }
 
 /*
-	TODO: Checkbox kleiner machen
-
+	TODO: fix hover effect on components over/same as db06
 	List:
 	1. Components
 		1.1 Checkbox
@@ -45,8 +81,11 @@ body:not(.style-scope)[dark] {
 		1.4 File-Input
 		1.5 Tags
 		1.6 Tooltip
+		1.7 Custom Select
 	2. html main components
 	3. Classes
+		3.1 Card
+		3.2 etc
 */
 
 
@@ -54,16 +93,19 @@ body:not(.style-scope)[dark] {
 	1. Components
 */
 
-:is(textarea, input, select, button, th, tr):hover {
-	filter: var(--hover);
+:is(textarea, input, select, button, th, tr, .checkmark, .inputfile + label, .custom-select, .select-items div):hover, .same-as-selected {
+	/* filter: var(--hover) !important; */
+	background-color: rgba(var(--OnSurface), var(--dp06)) !important;
 }
 
+
 input {
+	background-color: rgba(var(--OnSurface), var(--dp01));
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	color: rgba(var(--OnSurface),var(--High-emphasis));
 	width: 100%;
-	box-sizing: border-box;
 	/* height: 25px; */
-	background-color: var(--maincolor);
-	color: var(--labelcolor);
+	box-sizing: border-box;
 	padding: var(--padding-component);
 	border: none;
 	border-radius: var(--borderradius-component);
@@ -71,26 +113,36 @@ input {
 }
 
 select {
+	background-color: rgba(var(--OnSurface), var(--dp01));
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	color: rgba(var(--OnSurface),var(--High-emphasis));
 	width: 100%;
 	box-sizing: border-box;
-	color: var(--labelcolor);
-    background-color: var(--maincolor);
 	padding: var(--padding-component);
 	border: none;
 	border-radius: var(--borderradius-component);
 	/* padding: 1px 2px; */
 	/* height: 25px; */
+	outline: none;
+}
+
+select option {
+    margin: 40px;
+	background: var(--Surface);
+    color: rgba(var(--OnSurface),var(--High-emphasis));
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }
 
 select:focus, input[list]:focus {
-	border-radius: 4px 4px 0px 0px;
+	border-radius: var(--borderradius-component) var(--borderradius-component) 0px 0px;
 }
 
 textarea {
 	width: 100%;
 	box-sizing: border-box;
-    background-color: var(--maincolor);
-    color: var(--labelcolor);
+	background-color: rgba(var(--OnSurface), var(--dp01));
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	color: rgba(var(--OnSurface),var(--High-emphasis));
 	padding: var(--padding-component);
     border: none;
 	border-radius: var(--borderradius-component);
@@ -100,8 +152,9 @@ textarea {
 button {
 	/* width: 100%; */
 	cursor: pointer;
-    background-color: var(--maincolor);
-    color: var(--labelcolor);
+	background-color: rgba(var(--OnSurface), var(--dp01));
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	color: rgba(var(--OnSurface),var(--High-emphasis));
 	padding: var(--padding-component);
     border: none;
 	border-radius: var(--borderradius-component);
@@ -138,19 +191,22 @@ button {
 	margin-left: 0.6em;
 	height: 1em;
 	width: 1em;
-	background-color: var(--labelcolor);
+	background-color: rgba(var(--OnSurface), var(--dp06));
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
 	border-radius: 0.25em;
+	/* border-radius: var(--borderradius-component); */
 }
   
 /* On mouse-over, add a grey background color */
 .container:hover input ~ .checkmark {
-	filter: var(--hover);
+	/* filter: var(--hover); */
+	background-color: rgba(var(--OnSurface), var(--dp24)) !important;
 }
   
 /* When the checkbox is checked, add a blue background */
-/*.container input:checked ~*/ .checkmark {
-	background-color: var(--maincolor);
-}
+/* .container input:checked ~ .checkmark {
+	background-color: var(--Primary);
+} */
 
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
@@ -170,7 +226,7 @@ button {
 	width: .18em;
 	left: .335em;
 	top: .16em;
-	border: solid var(--labelcolor);
+	border: solid rgb(var(--OnSurface));
 	border-width: 0 .15em .15em 0;
 	-webkit-transform: rotate(45deg);
 	-ms-transform: rotate(45deg);
@@ -184,8 +240,9 @@ button {
 table {
 	border-spacing: 0;
 	width: 100%;
-	color: var(--labelcolor);
+	color: rgba(var(--OnSurface),var(--High-emphasis));
 	/* border: 1px solid var(--secondcolor); */
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
 th, td {
@@ -194,18 +251,18 @@ th, td {
 }
 
 tr:nth-child(odd) {
-	background-color: var(--secondcolor);
+	background-color: rgba(var(--OnSurface), var(--dp01));
 }
 
 tr:nth-child(even) {
-	background-color: var(--maincolor);
+	background-color: rgba(var(--OnSurface), var(--dp06));
 }
 
 table thead th {
 	position: sticky;
 	top: 0;
-	background-color: var(--maincolor);
 	z-index: 2;
+	background-color: rgba(var(--OnSurface), var(--dp01));
 }
 
 /*
@@ -213,8 +270,9 @@ table thead th {
 */
 
 .collapsible {
-	background-color: var(--maincolor);
-	color: var(--labelcolor);
+	background-color: rgba(var(--OnSurface), var(--dp01));
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	color: rgba(var(--OnSurface),var(--High-emphasis));
 	cursor: pointer;
 	padding: var(--padding-component);
 	width: 100%;
@@ -227,7 +285,7 @@ table thead th {
 	border-radius: var(--borderradius-component);
 }
 .activecollapsible {
-	border-radius: 4px 4px 0px 0px;
+	border-radius: var(--borderradius-component) var(--borderradius-component) 0px 0px;
 }
 
 /* .activecollapsible {
@@ -236,7 +294,7 @@ table thead th {
 
 .collapsible:after {
 	content: '\002B';
-	color: var(--labelcolor);
+	color: rgba(var(--OnSurface),var(--High-emphasis));
 	font-weight: bold;
 	float: right;
 	margin-left: 5px;
@@ -251,10 +309,11 @@ table thead th {
 	max-height: 0;
 	overflow: hidden;
 	transition: max-height 0.2s ease-out;
-	background-color: var(--secondcolor);
-	color: var(--labelcolor);
+	background-color: rgba(var(--OnSurface), var(--dp06));
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	color: rgba(var(--OnSurface),var(--High-emphasis));
 	border: none;
-	border-radius: 0px 0px 4px 4px;
+	border-radius: 0px 0px var(--borderradius-component) var(--borderradius-component);
 }
 
 
@@ -285,23 +344,21 @@ table thead th {
 	margin-bottom: 10px;
 	cursor: pointer;
 	max-width: 80%;
-	/* font-size: 1.25rem; */
-	font-size: 16px;
 	font-weight: 450; /*700*/
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	cursor: pointer;
 	display: inline-block;
 	overflow: hidden;
-	/* padding: 0.625rem 1.25rem; */
 	padding: var(--padding-component);
-	color: var(--labelcolor);
-	background-color: var(--maincolor);
+	background-color: rgba(var(--OnSurface), var(--dp01));
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	color: rgba(var(--OnSurface),var(--High-emphasis));
 	border: none;
 	border-radius: var(--borderradius-component);
 }
   
-.inputfile + label:hover{filter: var(--hover);}
+/* .inputfile + label:hover{filter: var(--hover);} */
   
 .inputfile:focus + label {
 	outline: 1px dotted #000;
@@ -316,7 +373,7 @@ table thead th {
 	width: 1em;
 	height: 1em;
 	vertical-align: middle;
-	fill: var(--labelcolor);
+	fill: rgba(var(--OnSurface),var(--High-emphasis));
 	margin-top: -0.25em;
 	margin-right: 0.25em;
 }
@@ -326,11 +383,12 @@ table thead th {
 */
 
 .tags-input {
-    border: 1px solid var(--secondcolor);
-	color: var(--labelcolor);
-	background-color: var(--maincolor);
+    /* border: 1px solid var(--secondcolor); */
+	/* background-color: rgba(var(--OnSurface), var(--dp01));
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08); */
+	/* padding: var(--padding-component); */
+	color: rgba(var(--OnSurface),var(--High-emphasis));
 	border-radius: var(--borderradius-component);
-	padding: var(--padding-component);
     display: inline-block;
 	box-sizing: border-box;
 	width: 100%;
@@ -345,15 +403,16 @@ table thead th {
     padding: 0.5em 0.75em;
     margin: 0.25em 0.2em;
     display: inline-block;
-    background-color: var(--secondcolor);
+	background-color: rgba(var(--OnSurface), var(--dp06));
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
 	border-radius: var(--borderradius-component);
     transition: all 0.1s linear;
     cursor: pointer;
 }
 
 .tags-input .tag:hover {
-    background-color: var(--primarycolor); /*#3af*/
-    color: white;
+    background-color: var(--Primary); /*#3af*/
+    color: rgba(var(--OnPrimary),var(--High-emphasis)) !important;
 }
 
 .tags-input .tag .close::after {
@@ -371,7 +430,6 @@ table thead th {
 .tags-input .main-input {
     border: 0;
     outline: 0;
-    padding: 0.5em 0.1em;
 }
 
 /*
@@ -380,23 +438,21 @@ table thead th {
 
 /* Tooltip container */
 .tooltip {
-/* color: var(--labelcolor); */
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted black; /* color: var(--labelcolor); */
+  border-bottom: 1px dotted rgba(var(--OnBackground), var(--High-emphasis));
 }
 
 /* Tooltip text */
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 120px;
-  background-color: var(--maincolor);
-  color: var(--labelcolor);
+  background-color: var(--Surface);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  color: rgba(var(--OnSurface),var(--High-emphasis));
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
-
-  box-shadow: 0px 0px 2px 0px var(--labelcolor);
 
   /* Position the tooltip text */
   position: absolute;
@@ -419,7 +475,7 @@ table thead th {
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: var(--maincolor) transparent transparent transparent;
+  border-color: var(--Surface) transparent transparent transparent;
 }
 
 .tooltip:hover .tooltiptext {
@@ -443,7 +499,8 @@ table thead th {
 }
   
 .select-selected {
-	background-color: var(--maincolor);
+	background-color: rgba(var(--OnSurface), var(--dp01));
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
 	border-radius: var(--borderradius-component);
 }
 
@@ -451,12 +508,12 @@ table thead th {
 .select-selected:after {
 	position: absolute;
 	content: "";
-	top: 14px;
+	top: 1.1em;
 	right: 10px;
 	width: 0;
 	height: 0;
 	border: 6px solid transparent;
-	border-color: var(--labelcolor) transparent transparent transparent;
+	border-color: rgba(var(--OnSurface), var(--High-emphasis)) transparent transparent transparent;
 }
 .select-arrow-active {
 	border-radius: var(--borderradius-component) var(--borderradius-component) 0px 0px;
@@ -464,31 +521,36 @@ table thead th {
 
 /* Point the arrow upwards when the select box is open (active): */
 .select-selected.select-arrow-active:after {
-	border-color: transparent transparent var(--labelcolor) transparent;
-	top: 7px;
+	border-color: transparent transparent rgba(var(--OnSurface), var(--High-emphasis)) transparent;
+	top: 0.7em;
 }
 
 /* style the items (options), including the selected item: */
 .select-items div,.select-selected {
-	color: var(--labelcolor);
-	padding: 8px 16px;
+	color: rgba(var(--OnSurface),var(--High-emphasis));
+	padding: var(--padding-component);
 	border: 1px solid transparent;
-	border-color: transparent transparent rgba(var(--bordercolor-component), 0.1) transparent;
+	border-color: transparent transparent rgba(0,0,0, 0.1) transparent;
 	cursor: pointer;
 }
 
 /* Style items (options): */
 .select-items {
 	position: absolute;
-	background-color: var(--maincolor);
+	background-color: var(--Surface);
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
 	top: 100%;
 	left: 0;
 	right: 0;
 	z-index: 99;
-	border: 1px solid rgba(var(--bordercolor-component), 0.3);
+	border: 1px solid rgba(0,0,0, 0.3);
 	border-radius: 0px 0px var(--borderradius-component) var(--borderradius-component);
 	max-height: 300px;
 	overflow-y: scroll;
+}
+
+.select-items div {
+	background-color: rgba(var(--OnSurface), var(--dp01));
 }
 
 /* Hide the items when the select box is closed: */
@@ -496,11 +558,9 @@ table thead th {
 	display: none;
 }
 
-.select-items div:hover, .same-as-selected {
-	background-color: rgba(var(--bordercolor-component), 0.1);
-}
-
-
+/* .select-items div:hover, .same-as-selected {
+	background-color: rgba(0,0,0, 0.1);
+} */
 
 
 /*
@@ -510,23 +570,41 @@ table thead th {
 ::-webkit-scrollbar {
     width: 8px;
     border-radius: 10px;
-	/* border: 2px solid var(--scrollbarcolor); */
 }
    
 ::-webkit-scrollbar-thumb {
-    /* background-color: var(--scrollbarcolor); */
-	background-color: var(--secondcolor);
+	background-color: rgba(var(--OnSurface), var(--dp24));
     border-radius: 10px;
 }
 
 ::placeholder { 
-	color: var(--labelcolor);
-	opacity: .8;
+	color: var(--OnSurface);
+	opacity: .7;
 }
 
 /*
 	3. Classes
 */
+
+
+/*
+	3.1 Card
+*/
+.card {
+	background-color: rgba(var(--OnSurface), var(--dp01));
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	padding: var(--padding-component);
+	border: none;
+	border-radius: var(--borderradius-component);
+}
+
+/*
+	3.2 etc
+*/
+
+.disabled-element {
+	color: rgba(var(--OnSurface),var(--Disabled-text)) !important;
+}
 
 .withscrollbarY {
     overflow-y: scroll;
@@ -551,9 +629,5 @@ table thead th {
 .nooutline {
     outline: none;
 }
-
-
-
-
 
 
