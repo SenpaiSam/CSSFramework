@@ -10,7 +10,9 @@ body {
 
 	--Primary: #BB86FC;
 	--Secondary: #03DAC6;
-
+	--Error: #b00020;
+	--Quit: #E30425;
+	--Confirm: #1ea81e;
 	
 	/*Typography and iconography*/
 	--OnBackground: 0, 0, 0;
@@ -29,50 +31,100 @@ body {
 	--hover: brightness(120%); /*Not working on light theme*/
 	--borderradius-component: 0.4em; /*4px*/
 	--padding-component: 0.7em; /*8px*/
+	--component-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
 
 	color: rgba(var(--OnBackground),var(--High-emphasis));
 }
 
-
 body:not(.style-scope)[dark] {
-	font-family: 'Montserrat', sans-serif;
-	font-family: 24px;
-	overflow: hidden;
-
 	--Background: #121212;
 	--Surface: #121212;
 
 	--Primary: #BB86FC;
 	--Secondary: #03DAC6;
 
-	
+
 	/*Typography and iconography*/
 	--OnBackground: 255, 255, 255;
 	--OnSurface: 255, 255, 255;
 	--OnPrimary: #000000;
 	--OnSecondary: #000000;
-	
-	--High-emphasis: 87%;
-	--Medium-emphasis: 60%;
-	--Disabled-text: 38%;
-
-	--dp01: 5%;
-	--dp06: 11%;
-	--dp24: 16%;
-
 
 	--hover: brightness(80%);
-	--borderradius-component: 0.4em;
-	--padding-component: 0.7em;
-
-
 	/* background-color: var(--Background); */
 	background-color: #1E1E1E;
 	color: rgba(var(--OnBackground),var(--High-emphasis));
 }
 
+body:not(.style-scope)[blue] {
+	--Background: #112233;
+	--Surface: #112233;
+
+	--Primary: #BB86FC;
+	--Secondary: #03DAC6;
+
+	/*Typography and iconography*/
+	/* --OnBackground: 255, 255, 255; */
+	/* --OnSurface: 255, 255, 255; */
+	--OnBackground: 221, 238, 255; /*blueish*/
+	--OnSurface: 221, 238, 255; /*blueish*/
+	--OnPrimary: #000000;
+	--OnSecondary: #000000;
+
+	--hover: brightness(80%);
+	background-color: var(--Background);
+	color: rgba(var(--OnBackground),var(--High-emphasis));
+}
+
+body:not(.style-scope)[skin] {
+	--Background: #FEDBD0;
+	--Surface: #FEDBD0;
+
+	--Primary: #BB86FC;
+	--Secondary: #03DAC6;
+
+	/*Typography and iconography*/
+	--OnBackground: 68, 44, 46; 
+	--OnSurface: 68, 44, 46;
+	--OnPrimary: #000000;
+	--OnSecondary: #000000;
+
+	--hover: brightness(80%);
+	background-color: var(--Background);
+	color: rgba(var(--OnBackground),var(--High-emphasis));
+}
+
+body:not(.style-scope)[greyish] {
+	--Background: #344955;
+	--Surface: #344955;
+
+	--Primary: #BB86FC;
+	--Secondary: #03DAC6;
+
+	/*Typography and iconography*/
+	--OnBackground: 249, 170, 51;
+	--OnSurface: 249, 170, 51;
+	--OnPrimary: #000000;
+	--OnSecondary: #000000;
+
+	--hover: brightness(80%);
+	background-color: var(--Background);
+	color: rgba(var(--OnBackground),var(--High-emphasis));
+}
+
+body:not(.style-scope)[flat] {
+	--component-shadow: none;
+}
+*:disabled {
+	color: rgba(var(--OnSurface),var(--Disabled-text)) !important;
+	cursor: default;
+}
+
+
 /*
-	TODO: fix hover effect on components over/same as db06
+	TODO: 
+		- fix hover effect on components over/same as db06 [0]
+		- ...
 	List:
 	1. Components
 		1.1 Checkbox
@@ -85,7 +137,8 @@ body:not(.style-scope)[dark] {
 	2. html main components
 	3. Classes
 		3.1 Card
-		3.2 etc
+		3.2 Button styles
+		3.3 etc
 */
 
 
@@ -93,15 +146,20 @@ body:not(.style-scope)[dark] {
 	1. Components
 */
 
-:is(textarea, input, select, button, th, tr, .checkmark, .inputfile + label, .custom-select, .select-items div):hover, .same-as-selected {
+:is(textarea, input, select, th, tr, .checkmark, .inputfile + label, .custom-select, .select-items div):hover:not(.disabled-element), .same-as-selected {
 	/* filter: var(--hover) !important; */
 	background-color: rgba(var(--OnSurface), var(--dp06)) !important;
 }
-
+button:hover {
+	filter: var(--hover) !important;
+}
+button:hover:not(.btn-customcolor) {
+	background-color: rgba(var(--OnSurface), var(--dp06)) !important;
+}
 
 input {
 	background-color: rgba(var(--OnSurface), var(--dp01));
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	box-shadow: var(--component-shadow);
 	color: rgba(var(--OnSurface),var(--High-emphasis));
 	width: 100%;
 	/* height: 25px; */
@@ -114,7 +172,7 @@ input {
 
 select {
 	background-color: rgba(var(--OnSurface), var(--dp01));
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	box-shadow: var(--component-shadow);
 	color: rgba(var(--OnSurface),var(--High-emphasis));
 	width: 100%;
 	box-sizing: border-box;
@@ -141,7 +199,7 @@ textarea {
 	width: 100%;
 	box-sizing: border-box;
 	background-color: rgba(var(--OnSurface), var(--dp01));
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	box-shadow: var(--component-shadow);
 	color: rgba(var(--OnSurface),var(--High-emphasis));
 	padding: var(--padding-component);
     border: none;
@@ -153,7 +211,7 @@ button {
 	/* width: 100%; */
 	cursor: pointer;
 	background-color: rgba(var(--OnSurface), var(--dp01));
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	box-shadow: var(--component-shadow);
 	color: rgba(var(--OnSurface),var(--High-emphasis));
 	padding: var(--padding-component);
     border: none;
@@ -192,7 +250,7 @@ button {
 	height: 1em;
 	width: 1em;
 	background-color: rgba(var(--OnSurface), var(--dp06));
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	box-shadow: var(--component-shadow);
 	border-radius: 0.25em;
 	/* border-radius: var(--borderradius-component); */
 }
@@ -242,7 +300,7 @@ table {
 	width: 100%;
 	color: rgba(var(--OnSurface),var(--High-emphasis));
 	/* border: 1px solid var(--secondcolor); */
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	box-shadow: var(--component-shadow);
 }
 
 th, td {
@@ -271,7 +329,7 @@ table thead th {
 
 .collapsible {
 	background-color: rgba(var(--OnSurface), var(--dp01));
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	box-shadow: var(--component-shadow);
 	color: rgba(var(--OnSurface),var(--High-emphasis));
 	cursor: pointer;
 	padding: var(--padding-component);
@@ -310,7 +368,7 @@ table thead th {
 	overflow: hidden;
 	transition: max-height 0.2s ease-out;
 	background-color: rgba(var(--OnSurface), var(--dp06));
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	box-shadow: var(--component-shadow);
 	color: rgba(var(--OnSurface),var(--High-emphasis));
 	border: none;
 	border-radius: 0px 0px var(--borderradius-component) var(--borderradius-component);
@@ -352,7 +410,7 @@ table thead th {
 	overflow: hidden;
 	padding: var(--padding-component);
 	background-color: rgba(var(--OnSurface), var(--dp01));
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	box-shadow: var(--component-shadow);
 	color: rgba(var(--OnSurface),var(--High-emphasis));
 	border: none;
 	border-radius: var(--borderradius-component);
@@ -385,7 +443,7 @@ table thead th {
 .tags-input {
     /* border: 1px solid var(--secondcolor); */
 	/* background-color: rgba(var(--OnSurface), var(--dp01));
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08); */
+	box-shadow: var(--component-shadow); */
 	/* padding: var(--padding-component); */
 	color: rgba(var(--OnSurface),var(--High-emphasis));
 	border-radius: var(--borderradius-component);
@@ -404,7 +462,7 @@ table thead th {
     margin: 0.25em 0.2em;
     display: inline-block;
 	background-color: rgba(var(--OnSurface), var(--dp06));
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	box-shadow: var(--component-shadow);
 	border-radius: var(--borderradius-component);
     transition: all 0.1s linear;
     cursor: pointer;
@@ -448,7 +506,7 @@ table thead th {
   visibility: hidden;
   width: 120px;
   background-color: var(--Surface);
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--component-shadow);
   color: rgba(var(--OnSurface),var(--High-emphasis));
   text-align: center;
   padding: 5px 0;
@@ -500,7 +558,7 @@ table thead th {
   
 .select-selected {
 	background-color: rgba(var(--OnSurface), var(--dp01));
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	box-shadow: var(--component-shadow);
 	border-radius: var(--borderradius-component);
 }
 
@@ -538,7 +596,7 @@ table thead th {
 .select-items {
 	position: absolute;
 	background-color: var(--Surface);
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	box-shadow: var(--component-shadow);
 	top: 100%;
 	left: 0;
 	right: 0;
@@ -592,19 +650,36 @@ table thead th {
 */
 .card {
 	background-color: rgba(var(--OnSurface), var(--dp01));
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	box-shadow: var(--component-shadow);
 	padding: var(--padding-component);
 	border: none;
 	border-radius: var(--borderradius-component);
 }
 
+
 /*
-	3.2 etc
+	3.2 Button styles
 */
 
-.disabled-element {
-	color: rgba(var(--OnSurface),var(--Disabled-text)) !important;
+.btn-quit {
+	background-color: var(--Quit);
 }
+
+.btn-confirm {
+	background-color: var(--Confirm);
+}
+
+.btn-primary {
+	background-color: var(--Primary);
+}
+
+.btn-secondary {
+	background-color: var(--Secondary);
+}
+
+/*
+	3.3 etc
+*/
 
 .withscrollbarY {
     overflow-y: scroll;
@@ -630,4 +705,7 @@ table thead th {
     outline: none;
 }
 
+.text-center {
+	text-align: center;
+}
 

@@ -4,6 +4,28 @@ function colorswitch() {
   document.body.toggleAttribute("dark");
 }
 
+function flatswitch() {
+  document.body.toggleAttribute("flat");
+  document.getElementById('inputid').toggleAttribute('disabled');
+}
+
+function themecolor(val) {
+  document.body.removeAttribute("light");
+  document.body.removeAttribute("dark");
+  document.body.removeAttribute("blue");
+  document.body.removeAttribute("skin");
+  document.body.removeAttribute("greyish");
+  document.body.setAttribute(val,true);
+}
+
+// checkDisabledComponents();
+// function checkDisabledComponents() {
+//   document.querySelectorAll('[disabled]').forEach(disabled => disabled.style.color = 'rgba(var(--OnSurface),var(--Disabled-text))');
+//   document.querySelectorAll(':not([disabled])').forEach(disabled => disabled.style.color = 'rgba(var(--OnSurface),var(--High-emphasis))');
+// }
+
+//document.getElementById("inputid").classList.toggle("disabled-element"); // make text style disabled
+
 // #################################
 
 function tablesearchfilter() {
@@ -83,7 +105,7 @@ function sortTable(n) {
     }
 }
 
-// #################################
+//#region  ################ collapsible #################
 
 var coll = document.getElementsByClassName("collapsible");
 var i;
@@ -99,8 +121,9 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
-// #################################
+//#endregion #################################
 
+//#region  ################ Input File #################
 var inputs = document.querySelectorAll('.inputfile');
 Array.prototype.forEach.call(inputs, function(input)
 {
@@ -122,8 +145,9 @@ Array.prototype.forEach.call(inputs, function(input)
 	});
 });
 
-// #################################
+//#endregion #################################
 
+//#region  ################ Tags #################
 var TagInputData = [
   {
     name: "tagPerson",
@@ -298,6 +322,9 @@ var TagInputData = [
   }
 });
 
+//#endregion #################################
+
+//#region  ################ Custom Select #################
 
 initCustomSelect();
 // Custom Selector
@@ -422,3 +449,5 @@ function loadSelect(id,value) {
 /* If the user clicks anywhere outside the select box,
 then close all select boxes: */
 document.addEventListener("click", closeAllSelect);
+
+//#endregion #################################
