@@ -3,7 +3,6 @@
 body {
 	font-family: 'Montserrat', sans-serif;
 	font-family: 24px;
-	overflow: hidden;
 
 	--Background: #FFFFFF;
 	--Surface: #FFFFFF;
@@ -52,7 +51,7 @@ body:not(.style-scope)[dark] {
 
 	--hover: brightness(80%);
 	/* background-color: var(--Background); */
-	background-color: #1E1E1E;
+	background-color: #181818;
 	color: rgba(var(--OnBackground),var(--High-emphasis));
 }
 
@@ -118,8 +117,13 @@ body:not(.style-scope)[flat] {
 *:disabled {
 	color: rgba(var(--OnSurface),var(--Disabled-text)) !important;
 	cursor: default;
+	/* opacity: 0.8; */
 }
 
+* {
+	box-sizing: border-box;
+	/* transition: 0.2s; */
+} 
 
 /*
 	TODO: 
@@ -134,6 +138,7 @@ body:not(.style-scope)[flat] {
 		1.5 Tags
 		1.6 Tooltip
 		1.7 Custom Select
+		1.8 Navbar
 	2. html main components
 	3. Classes
 		3.1 Card
@@ -186,7 +191,7 @@ select {
 
 select option {
     margin: 40px;
-	background: var(--Surface);
+	background: var(--Background);
     color: rgba(var(--OnSurface),var(--High-emphasis));
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }
@@ -209,14 +214,15 @@ textarea {
 
 button {
 	/* width: 100%; */
-	cursor: pointer;
 	background-color: rgba(var(--OnSurface), var(--dp01));
-	box-shadow: var(--component-shadow);
 	color: rgba(var(--OnSurface),var(--High-emphasis));
+	box-shadow: var(--component-shadow);
 	padding: var(--padding-component);
+	cursor: pointer;
     border: none;
 	border-radius: var(--borderradius-component);
 }
+
 
 /*
 	1.1 Checkbox
@@ -227,9 +233,6 @@ button {
 	position: relative;
 	cursor: pointer;
 	font-size: 20px;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
 	user-select: none;
 }
   
@@ -505,7 +508,7 @@ table thead th {
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 120px;
-  background-color: var(--Surface);
+  background-color: var(--Background);
   box-shadow: var(--component-shadow);
   color: rgba(var(--OnSurface),var(--High-emphasis));
   text-align: center;
@@ -533,7 +536,7 @@ table thead th {
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: var(--Surface) transparent transparent transparent;
+  border-color: var(--Background) transparent transparent transparent;
 }
 
 .tooltip:hover .tooltiptext {
@@ -595,7 +598,7 @@ table thead th {
 /* Style items (options): */
 .select-items {
 	position: absolute;
-	background-color: var(--Surface);
+	background-color: var(--Background);
 	box-shadow: var(--component-shadow);
 	top: 100%;
 	left: 0;
@@ -619,6 +622,38 @@ table thead th {
 /* .select-items div:hover, .same-as-selected {
 	background-color: rgba(0,0,0, 0.1);
 } */
+
+/*
+	1.8 Navbar
+*/
+
+.nav {
+	display: inline-flex;
+	max-width: 100%;
+	padding: 0 var(--padding-component);
+	border-radius: var(--borderradius-component);
+	background-color: rgba(var(--OnSurface), var(--dp01));
+	box-shadow: var(--component-shadow);
+	/* border: 2px solid #ddd; */
+}
+
+.nav-item {
+	color: rgba(var(--OnBackground), var(--Medium-emphasis));
+	padding: var(--padding-component);
+	text-decoration: none;
+	transition: 0.3s;
+}
+.nav-item:hover:not(.nav-item-disabled) {
+	box-shadow: inset 0 -3px 0 rgba(var(--OnBackground), var(--High-emphasis));
+	color: rgba(var(--OnBackground), var(--High-emphasis));
+}
+.nav-item-active {
+	color: rgba(var(--OnBackground), var(--High-emphasis));
+}
+.nav-item-disabled {
+	color: rgba(var(--OnBackground), var(--Disabled-text));
+}
+
 
 
 /*
