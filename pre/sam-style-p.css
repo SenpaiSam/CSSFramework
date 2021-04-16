@@ -1,0 +1,840 @@
+/*CSS Sam Framework by Samuel B.*/
+
+html {
+	margin: 0;
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	font-family: 24px;
+
+	--Background: #FFFFFF;
+	--Surface: #FFFFFF;
+
+	--Primary: #BB86FC;
+	--Secondary: #03DAC6;
+	--Error: #b00020;
+	--Quit: #E30425;
+	--Confirm: #1ea81e;
+	
+	/*Typography and iconography*/
+	--OnBackground: 0, 0, 0;
+	--OnSurface: 0, 0, 0;
+	--OnPrimary: 0, 0, 0;
+	--OnSecondary: 0, 0, 0;
+	
+	--High-emphasis: 87%;
+	--Medium-emphasis: 60%;
+	--Disabled-text: 38%;
+
+	--dp01: 5%;
+	--dp06: 11%;
+	--dp24: 16%;
+
+	--hover: brightness(180%); /*Not working on light theme*/
+	--borderradius-component: 0.4em; /*4px*/
+	--padding-component: 0.7em; /*8px*/
+	--component-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+
+	color: rgba(var(--OnBackground),var(--High-emphasis));
+	transition: 0.2s;
+	margin: 0;
+}
+
+body:not(.style-scope)[dark] {
+	--Background: #181818;
+	--Surface: #121212;
+
+	--Primary: #BB86FC;
+	--Secondary: #03DAC6;
+
+
+	/*Typography and iconography*/
+	--OnBackground: 255, 255, 255;
+	--OnSurface: 255, 255, 255;
+	--OnPrimary: 0, 0, 0;
+	--OnSecondary: 0, 0, 0;
+
+	--hover: brightness(80%);
+	background-color: var(--Background);
+	/* background-color: #181818; */
+	color: rgba(var(--OnBackground),var(--High-emphasis));
+}
+
+body:not(.style-scope)[blue] {
+	--Background: #112233;
+	--Surface: #112233;
+
+	--Primary: #BB86FC;
+	--Secondary: #03DAC6;
+
+	/*Typography and iconography*/
+	/* --OnBackground: 255, 255, 255; */
+	/* --OnSurface: 255, 255, 255; */
+	--OnBackground: 221, 238, 255; /*blueish*/
+	--OnSurface: 221, 238, 255; /*blueish*/
+	--OnPrimary: 0, 0, 0;
+	--OnSecondary: 0, 0, 0;
+
+	--hover: brightness(80%);
+	background-color: var(--Background);
+	color: rgba(var(--OnBackground),var(--High-emphasis));
+}
+
+body:not(.style-scope)[skin] {
+	--Background: #FEDBD0;
+	--Surface: #FEDBD0;
+
+	--Primary: #BB86FC;
+	--Secondary: #03DAC6;
+
+	/*Typography and iconography*/
+	--OnBackground: 68, 44, 46; 
+	--OnSurface: 68, 44, 46;
+	--OnPrimary: 0, 0, 0;
+	--OnSecondary: 0, 0, 0;
+
+	--hover: brightness(180%);
+	background-color: var(--Background);
+	color: rgba(var(--OnBackground),var(--High-emphasis));
+}
+
+body:not(.style-scope)[greyish] {
+	--Background: #344955;
+	--Surface: #344955;
+
+	--Primary: #BB86FC;
+	--Secondary: #03DAC6;
+
+	/*Typography and iconography*/
+	--OnBackground: 249, 170, 51;
+	--OnSurface: 249, 170, 51;
+	--OnPrimary: 0, 0, 0;
+	--OnSecondary: 0, 0, 0;
+
+	--hover: brightness(80%);
+	background-color: var(--Background);
+	color: rgba(var(--OnBackground),var(--High-emphasis));
+}
+
+body:not(.style-scope)[flat] {
+	--component-shadow: none;
+}
+*:disabled {
+	color: rgba(var(--OnSurface),var(--Disabled-text)) !important;
+	cursor: default;
+	/* opacity: 0.8; */
+}
+
+* {
+	box-sizing: border-box;
+	outline: none;
+} 
+
+/*
+	TODO: 
+		- fix hover effect on components over/same as db06 [0]
+		- ...
+	List:
+	1. Components
+		1.1 Checkbox
+		1.2 Table
+		1.3 Collapse
+		1.4 File-Input
+		1.5 Tags
+		1.6 Tooltip
+		1.7 Custom Select
+		1.8 Navbar
+	2. html main components
+	3. Classes
+		3.1 Card
+		3.2 Button styles
+		3.3 etc
+*/
+
+
+/*
+	1. Components
+*/
+
+:is(textarea, input, select, th, tr, .checkmark, .inputfile + label, .custom-select, .select-items div):hover:not(.disabled-element), .same-as-selected {
+	/* filter: var(--hover) !important; */
+	background-color: rgba(var(--OnSurface), var(--dp06)) !important;
+}
+button:hover {
+	filter: var(--hover) !important;
+}
+button:hover:not(.btn-customcolor) {
+	background-color: rgba(var(--OnSurface), var(--dp06)) !important;
+}
+
+input {
+	background-color: rgba(var(--OnSurface), var(--dp01));
+	box-shadow: var(--component-shadow);
+	color: rgba(var(--OnSurface),var(--High-emphasis));
+	width: 100%;
+	/* height: 25px; */
+	box-sizing: border-box;
+	padding: var(--padding-component);
+	border: none;
+	border-radius: var(--borderradius-component);
+	/* text-align: center; */
+}
+
+select {
+	background-color: rgba(var(--OnSurface), var(--dp01));
+	box-shadow: var(--component-shadow);
+	color: rgba(var(--OnSurface),var(--High-emphasis));
+	width: 100%;
+	box-sizing: border-box;
+	padding: var(--padding-component);
+	border: none;
+	border-radius: var(--borderradius-component);
+	/* padding: 1px 2px; */
+	/* height: 25px; */
+	outline: none;
+}
+
+select option {
+    margin: 40px;
+	background: var(--Background);
+    color: rgba(var(--OnSurface),var(--High-emphasis));
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+select:focus, input[list]:focus {
+	border-radius: var(--borderradius-component) var(--borderradius-component) 0px 0px;
+}
+
+textarea {
+	width: 100%;
+	box-sizing: border-box;
+	background-color: rgba(var(--OnSurface), var(--dp01));
+	box-shadow: var(--component-shadow);
+	color: rgba(var(--OnSurface),var(--High-emphasis));
+	padding: var(--padding-component);
+    border: none;
+	border-radius: var(--borderradius-component);
+    /* resize: none; */
+}
+
+button {
+	/* width: 100%; */
+	background-color: rgba(var(--OnSurface), var(--dp01));
+	color: rgba(var(--OnSurface),var(--High-emphasis));
+	box-shadow: var(--component-shadow);
+	padding: var(--padding-component);
+	cursor: pointer;
+    border: none;
+	border-radius: var(--borderradius-component);
+}
+
+
+/*
+	1.1 Checkbox
+*/
+
+/* Customize the label (the container) */
+.container {
+	position: relative;
+	cursor: pointer;
+	font-size: 20px;
+	user-select: none;
+}
+  
+/* Hide the browser's default checkbox */
+.container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+  
+/* Create a custom checkbox */
+.checkmark {
+	position: absolute;
+	bottom: 0.175em;
+	margin-left: 0.6em;
+	height: 1em;
+	width: 1em;
+	background-color: rgba(var(--OnSurface), var(--dp06));
+	box-shadow: var(--component-shadow);
+	border-radius: 0.25em;
+	/* border-radius: var(--borderradius-component); */
+}
+  
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+	/* filter: var(--hover); */
+	background-color: rgba(var(--OnSurface), var(--dp24)) !important;
+}
+  
+/* When the checkbox is checked, add a blue background */
+/* .container input:checked ~ .checkmark {
+	background-color: var(--Primary);
+} */
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+  
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+	display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+	height: .42em;
+	width: .18em;
+	left: .335em;
+	top: .16em;
+	border: solid rgb(var(--OnSurface));
+	border-width: 0 .15em .15em 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+/*
+	1.2 Table
+*/
+
+table {
+	border-spacing: 0;
+	width: 100%;
+	color: rgba(var(--OnSurface),var(--High-emphasis));
+	/* border: 1px solid var(--secondcolor); */
+	box-shadow: var(--component-shadow);
+}
+
+th, td {
+	text-align: left;
+	padding: var(--padding-component); /*16px*/
+}
+
+tr:nth-child(odd) {
+	background-color: rgba(var(--OnSurface), var(--dp01));
+}
+
+tr:nth-child(even) {
+	background-color: rgba(var(--OnSurface), var(--dp06));
+}
+
+table thead th {
+	position: sticky;
+	top: 0;
+	z-index: 2;
+	background-color: rgba(var(--OnSurface), var(--dp01));
+}
+
+/*
+	1.3 Collapse
+*/
+
+.collapsible {
+	background-color: rgba(var(--OnSurface), var(--dp01));
+	box-shadow: var(--component-shadow);
+	color: rgba(var(--OnSurface),var(--High-emphasis));
+	cursor: pointer;
+	padding: var(--padding-component);
+	width: 100%;
+	/* height: 50px; */
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+	border: none;
+	border-radius: var(--borderradius-component);
+}
+.activecollapsible {
+	border-radius: var(--borderradius-component) var(--borderradius-component) 0px 0px;
+}
+
+/* .activecollapsible {
+	background-color: var(--hover);
+} */
+
+.collapsible:after {
+	content: '\002B';
+	color: rgba(var(--OnSurface),var(--High-emphasis));
+	font-weight: bold;
+	float: right;
+	margin-left: 5px;
+}
+
+.activecollapsible:after {
+	content: "\2212";
+}
+
+.collapsiblecontent {
+	padding: 0 var(--padding-component); /*18px*/
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+	background-color: rgba(var(--OnSurface), var(--dp06));
+	box-shadow: var(--component-shadow);
+	color: rgba(var(--OnSurface),var(--High-emphasis));
+	border: none;
+	border-radius: 0px 0px var(--borderradius-component) var(--borderradius-component);
+}
+
+
+/* 
+	1.4 File-Input
+*/
+
+/* Hide browser default file input*/
+#file {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 100%;
+	overflow: hidden;
+	position: relative;
+	z-index: -1;
+}
+
+.inputfile + label {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	cursor: pointer;
+	max-width: 80%;
+	font-weight: 450; /*700*/
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	cursor: pointer;
+	display: inline-block;
+	overflow: hidden;
+	padding: var(--padding-component);
+	background-color: rgba(var(--OnSurface), var(--dp01));
+	box-shadow: var(--component-shadow);
+	color: rgba(var(--OnSurface),var(--High-emphasis));
+	border: none;
+	border-radius: var(--borderradius-component);
+}
+  
+/* .inputfile + label:hover{filter: var(--hover);} */
+  
+.inputfile:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+  }
+  
+.inputfile + label * {
+	pointer-events: none;
+}
+  
+.inputfile + label svg {
+	width: 1em;
+	height: 1em;
+	vertical-align: middle;
+	fill: rgba(var(--OnSurface),var(--High-emphasis));
+	margin-top: -0.25em;
+	margin-right: 0.25em;
+}
+
+/*
+	1.5 Tags
+*/
+
+.tags-input {
+    /* border: 1px solid var(--secondcolor); */
+	/* background-color: rgba(var(--OnSurface), var(--dp01));
+	box-shadow: var(--component-shadow); */
+	/* padding: var(--padding-component); */
+	color: rgba(var(--OnSurface),var(--High-emphasis));
+	border-radius: var(--borderradius-component);
+    display: inline-block;
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.main-input {
+	width: 350px;
+}
+
+.tags-input .tag {
+    font-size: 85%;
+    padding: 0.5em 0.75em;
+    margin: 0.25em 0.2em;
+    display: inline-block;
+	background-color: rgba(var(--OnSurface), var(--dp06));
+	box-shadow: var(--component-shadow);
+	border-radius: var(--borderradius-component);
+    transition: all 0.1s linear;
+    cursor: pointer;
+}
+
+.tags-input .tag:hover {
+    background-color: var(--Primary); /*#3af*/
+    color: rgba(var(--OnPrimary),var(--High-emphasis)) !important;
+}
+
+.tags-input .tag .close::after {
+    content: '×';
+    font-weight: bold;
+    display: inline-block;
+    transform: scale(1.4);
+    margin-left: 0.75em;
+}
+
+.tags-input .tag .close:hover::after {
+    color: red;
+}
+
+.tags-input .main-input {
+    border: 0;
+    outline: 0;
+}
+
+/*
+	1.6 Tooltip
+*/
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted rgba(var(--OnBackground), var(--High-emphasis));
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: var(--Background);
+  box-shadow: var(--component-shadow);
+  color: rgba(var(--OnSurface),var(--High-emphasis));
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--Background) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+/*
+	1.7 Custom Select
+*/
+
+/* The container must be positioned relative: */
+.custom-select {
+	position: relative;
+	font-family: Arial;
+}
+  
+.custom-select select {
+	display: none; /*hide original SELECT element: */
+}
+  
+.select-selected {
+	background-color: rgba(var(--OnSurface), var(--dp01));
+	box-shadow: var(--component-shadow);
+	border-radius: var(--borderradius-component);
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+	position: absolute;
+	content: "";
+	top: 1.1em;
+	right: 10px;
+	width: 0;
+	height: 0;
+	border: 6px solid transparent;
+	border-color: rgba(var(--OnSurface), var(--High-emphasis)) transparent transparent transparent;
+}
+.select-arrow-active {
+	border-radius: var(--borderradius-component) var(--borderradius-component) 0px 0px;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+	border-color: transparent transparent rgba(var(--OnSurface), var(--High-emphasis)) transparent;
+	top: 0.7em;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+	color: rgba(var(--OnSurface),var(--High-emphasis));
+	padding: var(--padding-component);
+	border: 1px solid transparent;
+	border-color: transparent transparent rgba(0,0,0, 0.1) transparent;
+	cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+	position: absolute;
+	background-color: var(--Background);
+	box-shadow: var(--component-shadow);
+	top: 100%;
+	left: 0;
+	right: 0;
+	z-index: 99;
+	border: 1px solid rgba(0,0,0, 0.3);
+	border-radius: 0px 0px var(--borderradius-component) var(--borderradius-component);
+	max-height: 300px;
+	overflow-y: scroll;
+}
+
+.select-items div {
+	background-color: rgba(var(--OnSurface), var(--dp01));
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+	display: none;
+}
+
+/* .select-items div:hover, .same-as-selected {
+	background-color: rgba(0,0,0, 0.1);
+} */
+
+/*
+	1.8 Navbar
+*/
+
+.nav {
+	display: inline-flex;
+	/* max-width: 100%; */
+	padding: 0 var(--padding-component);
+	border-radius: var(--borderradius-component);
+	background-color: rgba(var(--OnSurface), var(--dp01));
+	box-shadow: var(--component-shadow);
+	/* border: 2px solid #ddd; */
+}
+
+.nav-item {
+	color: rgba(var(--OnBackground), var(--Medium-emphasis));
+	padding: var(--padding-component);
+	text-decoration: none;
+	transition: 0.3s;
+}
+.nav-item:hover:not(.nav-item-disabled) {
+	box-shadow: inset 0 -3px 0 rgba(var(--OnBackground), var(--High-emphasis));
+	color: rgba(var(--OnBackground), var(--High-emphasis));
+}
+.nav-item-active {
+	color: rgba(var(--OnBackground), var(--High-emphasis));
+}
+.nav-item-disabled {
+	color: rgba(var(--OnBackground), var(--Disabled-text));
+}
+
+
+/*
+	1.9 Header
+*/
+
+.header {
+	width: 100%;
+	/* height: 4vh; */
+	background-color: rgba(var(--OnBackground), var(--dp01));
+	box-shadow: var(--component-shadow);
+	padding: var(--padding-component);
+	border: none;
+}
+
+.flex-wrap {
+	display: flex;
+	flex-wrap: inherit;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.nav-img {
+	width: auto;
+	height: auto;
+	margin-right: 1rem;
+}
+
+.nav-collapse {
+	/* flex-basis: auto; */
+	flex-grow: 1;
+	align-items: center;
+}
+
+.nav-link {
+	display: block;
+	color: rgba(var(--OnBackground), var(--High-emphasis));
+	text-decoration: none;
+	padding: 0.5rem 1rem;
+	user-select: none;
+	cursor: pointer;
+}
+
+.nav-link:hover {
+	filter: var(--hover);
+}
+
+.nav-link-icon > svg {
+	width: 1rem;
+	height: 1rem;
+	fill: rgba(var(--OnBackground), var(--High-emphasis));
+}
+
+.nav-link-special {
+	user-select: none;
+	display: block;
+	text-decoration: none;
+	cursor: pointer;
+	padding: 0.5rem 1rem;
+	color: var(--Primary);
+	border: 1.5px solid var(--Primary);
+	border-radius: var(--borderradius-component);
+	transition: 0.2s;
+}
+
+.nav-link-special:hover {
+	color: rgba(var(--OnPrimary), var(--High-emphasis));
+	background-color: var(--Primary);
+}
+
+.navbar-nav {
+	display: flex;
+	flex-direction: row;
+	padding-left: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.ms-md-auto {
+	margin-left: auto;
+}
+
+
+/*
+	2. html main components
+*/
+
+::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 10px;
+}
+   
+::-webkit-scrollbar-thumb {
+	background-color: rgba(var(--OnSurface), var(--dp24));
+    border-radius: 10px;
+}
+
+::placeholder { 
+	color: var(--OnSurface);
+	opacity: .7;
+}
+
+/*
+	3. Classes
+*/
+
+
+/*
+	3.1 Card
+*/
+.card {
+	background-color: rgba(var(--OnSurface), var(--dp01));
+	box-shadow: var(--component-shadow);
+	padding: var(--padding-component);
+	border: none;
+	border-radius: var(--borderradius-component);
+}
+
+
+/*
+	3.2 Button styles
+*/
+
+.btn-quit {
+	background-color: var(--Quit);
+}
+
+.btn-confirm {
+	background-color: var(--Confirm);
+}
+
+.btn-primary {
+	background-color: var(--Primary);
+}
+
+.btn-secondary {
+	background-color: var(--Secondary);
+}
+
+
+
+
+.color-primary {
+	background-color: var(--Primary) !important;
+}
+
+
+/*
+	3.3 etc
+*/
+
+.withscrollbarY {
+    overflow-y: scroll;
+    overflow-x: hidden;
+	padding-right: 5px;
+}
+
+.withscrollbarX {
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+
+.horizontal-center {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.nooutline {
+    outline: none;
+}
+
+.text-center {
+	text-align: center;
+}
+
