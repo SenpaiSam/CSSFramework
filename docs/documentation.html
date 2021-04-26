@@ -7,9 +7,6 @@
     <title>Sam-CSS Documentation</title>
 </head>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SenpaiSam/CSSFramework@latest/sam-style.min.css">
-<!-- <link rel="stylesheet" href="../sam-style.css"> -->
-<link rel="stylesheet" href="samdocs.css">
-
 <body>
     <div class="docs-row">
         <div class="docs-sticky">
@@ -18,6 +15,7 @@
             <h4>Main</h4>
             <ul class="docs-componentslist">
                 <li><a href="#main">Main</a></li>
+                <li><a href="#addcustomcolortheme">Add own color theme</a></li>
             </ul>
             <h4>Components</h4>
             <ul class="docs-componentslist">
@@ -37,6 +35,7 @@
                 <li><a href="#cardconfirm">Card confirm</a></li>
                 <li><a href="#cardinput">Card input</a></li>
                 <li><a href="#tagssystem">Tags system</a></li>
+                <li><a href="#slider-progressbar">Slider / progress system</a></li>
             </ul>
         </div>
 
@@ -46,11 +45,35 @@
             <br><br>
             <a href="https://senpaisam.github.io/CSSFramework" target="_blank" rel="noopener" ><button style="width: 100%;">Go to showcase site</button></a>
             <br><br>
+            
+            <!-- CSS add own color theme -->
+            <h1 id="addcustomcolortheme">Add custom color theme</h1>
+            <p>First, add your CSS theme color code before you link the CSS-Framework. Secondly add "addthemecolor('yourcolorthemename');" in your js code. (CSS color theme template below)</p>
+            <div class="component-preview">
+                <div class="code">
+                    <p>body:not(.style-scope)[yourcolorthemename] {<br>
+	                    --Background: #181818;<br>
+                        --Primary: 187, 134, 252;<br>
+                        --Secondary: 3, 218, 198;<br>
+                        --OnBackground: 255, 255, 255;<br>
+                        --OnPrimary: 0, 0, 0;<br>
+                        --OnSecondary: 0, 0, 0;<br>
+                        --Popup: #FFFFFF;<br>
+                        --PopupLabel: 0, 0, 0;<br>
+                        --sliderthumbcolor: var(--Primary);<br>
+                        --hover: brightness(80%);<br>
+                    }
+                    </p>
+                    <br>
+                    <p>addthemecolor('yourcolorthemename');</p>
+                </div>
+            </div>
+            
             <!-- Select -->
             <h1 id="select">Select</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
             <div class="component-preview">
-                <select class="pointer" onchange="themecolor(this.value)">
+                <select class="pointer" style="width: 100%;" onchange="themecolor(this.value)">
                     <option value="light" selected>light theme</option>
                     <option value="dark">dark theme</option>
                     <option value="blue">blue theme</option>
@@ -58,7 +81,7 @@
                     <option value="greyish">greyish theme</option>
                 </select>
                 <div class="code">
-                    <code>&lt;select class="pointer" onchange="themecolor(this.value)"><br>
+                    <code>&lt;select class="pointer" style="width: 100%;" onchange="themecolor(this.value)"><br>
                         &lt;option value="light" selected>light theme&lt;/option><br>
                         &lt;option value="dark">dark theme&lt;/option><br>
                         &lt;option value="blue">blue theme&lt;/option><br>
@@ -68,6 +91,7 @@
                     </code>
                 </div>
             </div>
+            
             <!-- Custom Select-->
             <h1 id="cselect">Custom Select</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
@@ -91,22 +115,15 @@
                 </div>
                 <div class="code">
                     <code>
-                        &lt;div class="custom-select" id="test"> <!-- loadSelect("test",3); -> display option from data -->
-                        &lt;input type="hidden" /> <!-- onchange="Test(this.value)" -->
-                        &lt;select>
-                        &lt;option value="0">Select color:&lt;/option>
-                        &lt;option value="1">Red&lt;/option>
-                        &lt;option value="2">Blue&lt;/option>
-                        &lt;option value="3">Cyan&lt;/option>
-                        &lt;option value="4">Orange&lt;/option>
-                        &lt;option value="5">Purple&lt;/option>
-                        &lt;option value="6">Black&lt;/option>
-                        &lt;option value="7">White&lt;/option>
-                        &lt;option value="8">Yellow&lt;/option>
-                        &lt;option value="9">Green&lt;/option>
-                        &lt;option value="10">light blue&lt;/option>
-                        &lt;option value="11">light green&lt;/option>
-                        &lt;/select>
+                        &lt;div class="custom-select" id="test"> <!-- loadSelect("test",3); -> display option from data --><br>
+                        &lt;input type="hidden" /> <!-- onchange="Test(this.value)" --><br>
+                        &lt;select><br>
+                        &lt;option value="0">Select color:&lt;/option><br>
+                        &lt;option value="1">Red&lt;/option><br>
+                        &lt;option value="2">Blue&lt;/option><br>
+                        &lt;option value="3">Cyan&lt;/option><br>
+                        &lt;option value="4">Orange&lt;/option><br>
+                        &lt;/select><br>
                         &lt;/div>
                     </code>
                 </div>
@@ -165,7 +182,7 @@
             <h1 id="selectwdatalist">Select with Datalist</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
             <div class="component-preview">
-                <input list="datalistetest" id="inputid" name="inputname" placeholder="Eingabe.." disabled/>
+                <input list="datalistetest" id="inputid" name="inputname" style="width: 100%;" placeholder="Eingabe.."/>
                 <datalist id="datalistetest">
                     <option value="Chrome">
                     <option value="Firefox">
@@ -174,7 +191,7 @@
                     <option value="Safari">
                 </datalist>
                 <div class="code">
-                    <code>&lt;input list="datalistetest" id="inputid" name="inputname" placeholder="Eingabe.." disabled/><br>
+                    <code>&lt;input list="datalistetest" id="inputid" name="inputname" style="width: 100%;" placeholder="Eingabe.." disabled/><br>
                         &lt;datalist id="datalistetest"><br>
                         &lt;option value="Chrome"><br>
                         &lt;option value="Firefox"><br>
@@ -190,9 +207,9 @@
             <h1 id="inputsearch">Input Search</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
             <div class="component-preview">
-                <input type="search" name="nameinput" id="inputid"  placeholder="Suche.."/> <!-- onkeydown="onkeydown1()" onsearch="onsearch1()" -->
+                <input type="search" name="nameinput" id="inputid" style="width: 100%;" placeholder="Suche.."/> <!-- onkeydown="onkeydown1()" onsearch="onsearch1()" -->
                 <div class="code">
-                    <code>&lt;input type="search" name="nameinput" id="inputid"  placeholder="Suche.."/> <!-- onkeydown="onkeydown1()" onsearch="onsearch1()" -->
+                    <code>&lt;input type="search" name="nameinput" id="inputid" style="width: 100%;" placeholder="Suche.."/> <!-- onkeydown="onkeydown1()" onsearch="onsearch1()" -->
                     </code>
                 </div>
             </div>
@@ -201,9 +218,9 @@
             <h1 id="textarea">Textarea</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
             <div class="component-preview">
-                <textarea style="height: 50px;" placeholder="Eingabe.."></textarea>
+                <textarea style="height: 50px;width: 100%;" placeholder="Eingabe.."></textarea>
                 <div class="code">
-                    <code>&lt;textarea style="height: 50px;" placeholder="Eingabe..">&lt;/textarea>
+                    <code>&lt;textarea style="height: 50px;" style="width: 100%;" placeholder="Eingabe..">&lt;/textarea>
                     </code>
                 </div>
             </div>
@@ -212,9 +229,9 @@
             <h1 id="inputtablesearch">Input Table Search</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
             <div class="component-preview">
-                <input type="search" name="nameinput" id="searchTable"  placeholder="Suche Tabele Name.." onkeyup="tablesearchfilter()" onsearch="tablesearchfilter()" />
+                <input type="search" name="nameinput" id="searchTable" style="width: 100%;" placeholder="Suche Tabele Name.." onkeyup="tablesearchfilter()" onsearch="tablesearchfilter()" />
                 <div class="code">
-                    <code>&lt;input type="search" name="nameinput" id="searchTable"  placeholder="Suche Tabele Name.." onkeyup="tablesearchfilter()" onsearch="tablesearchfilter()" />
+                    <code>&lt;input type="search" name="nameinput" id="searchTable" style="width: 100%;" placeholder="Suche Tabele Name.." onkeyup="tablesearchfilter()" onsearch="tablesearchfilter()" />
                     </code>
                 </div>
             </div>
@@ -336,8 +353,8 @@
                 <div class="code">
                     <code>&lt;div class="card text-center"><br>
                         &lt;p>Do you want to quit?&lt;/p><br>
-                        &lt;button class="btn-quit btn-customcolor" style="margin-right: 0.5em;">quit&lt;/button><br>
-                        &lt;button class="btn-confirm btn-customcolor">stay&lt;/button><br>
+                        &lt;button class="bcolor-quit bcolor-custom" style="margin-right: 0.5em;">quit&lt;/button><br>
+                        &lt;button class="bcolor-confirm bcolor-custom">stay&lt;/button><br>
                         &lt;/div>
                     </code>
                 </div>
@@ -351,14 +368,14 @@
                     <p>Tell something?</p>
                     <input type="search" name="nameinput" id="inputid"  placeholder="Eingabe.." style="margin-bottom: 1.4em;"/>
                     <button style="margin-right: 0.5em;">back</button>
-                    <button class="btn-primary btn-customcolor">send</button>
+                    <button class="bcolor-primary bcolor-custom">send</button>
                 </div>
                 <div class="code">
                     <code>&lt;div class="card text-center"><br>
                         &lt;p>Tell something?&lt;/p><br>
                         &lt;input type="search" name="nameinput" id="inputid"  placeholder="Eingabe.." style="margin-bottom: 1.4em;"/><br>
                         &lt;button style="margin-right: 0.5em;">back&lt;/button><br>
-                        &lt;button class="btn-primary btn-customcolor">send&lt;/button><br>
+                        &lt;button class="bcolor-primary bcolor-custom">send&lt;/button><br>
                         &lt;/div>
                     </code>
                 </div>
@@ -375,10 +392,32 @@
                 </div>
             </div>
 
+           <!-- Slider / Progress system -->
+            <h1 id="slider-progressbar">Slider / Progress system</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
+            <div class="component-preview">
+                <label for="progressslidername">Slider:</label>
+                <input id="progressslidername" type="range" min="0" max="100" step="0.01" value="10" class="slider"/> <!-- disabled ; showvalue -->
+                <span class="slidertitle"></span>
+                <br><br>
+                <label for="progressslidername2">Progress:</label>
+                <input id="progressslidername2" type="range" min="0" max="100" step="0.01" value="10" class="slider" disabled showvalue/> <!-- disabled ; showvalue -->
+                <span class="slidertitle"></span>
+                <div class="code">
+                    <code>&lt;label for="progressslidername">Slider:&lt;/label><br>
+                        &lt;input id="progressslidername" type="range" min="0" max="100" step="0.01" value="10" class="slider"/> <!-- disabled ; showvalue --><br>
+                        &lt;span class="slidertitle">&lt;/span><br>
+                    <br>
+                        &lt;label for="progressslidername2">Progress:&lt;/label><br>
+                        &lt;input id="progressslidername2" type="range" min="0" max="100" step="0.01" value="10" class="slider" disabled showvalue/> <!-- disabled ; showvalue --><br>
+                        &lt;span class="slidertitle">&lt;/span>
+                    </code>
+                </div>
+            </div>
 
+            
         </div>
     </div>
 </body>
-<!-- <script src="../sam-javascript.js"></script> -->
 <script src="https://cdn.jsdelivr.net/gh/SenpaiSam/CSSFramework@latest/sam-javascript.min.js"></script>
 </html>
