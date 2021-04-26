@@ -1,32 +1,25 @@
 /*CSS Sam Framework by Samuel B.*/
 
-function colorswitch() {
-  document.body.toggleAttribute("dark");
-}
+var colorthemes = ['light', 'dark', 'blue', 'skin', 'greyish'];
 
 function flatswitch() {
   document.body.toggleAttribute("flat");
-  document.getElementById('inputid').toggleAttribute('disabled');
 }
 
 function themecolor(val) {
-  document.body.removeAttribute("light");
-  document.body.removeAttribute("dark");
-  document.body.removeAttribute("blue");
-  document.body.removeAttribute("skin");
-  document.body.removeAttribute("greyish");
+  colorthemes.forEach(v => {
+    document.body.removeAttribute(v);
+  });
   document.body.setAttribute(val,true);
 }
 
-// checkDisabledComponents();
-// function checkDisabledComponents() {
-//   document.querySelectorAll('[disabled]').forEach(disabled => disabled.style.color = 'rgba(var(--OnSurface),var(--Disabled-text))');
-//   document.querySelectorAll(':not([disabled])').forEach(disabled => disabled.style.color = 'rgba(var(--OnSurface),var(--High-emphasis))');
-// }
+function addthemecolor(val) {
+  colorthemes.push(val);
+}
 
-//document.getElementById("inputid").classList.toggle("disabled-element"); // make text style disabled
+// document.getElementById('inputid').toggleAttribute('disabled');
 
-// #################################
+//#region  ############### Table ##################
 
 function tablesearchfilter() {
     // Declare variables
@@ -51,59 +44,60 @@ function tablesearchfilter() {
 }
 
 function sortTable(n) {
-    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    table = document.getElementById("customTable");
-    switching = true;
-    //Set the sorting direction to ascending:
-    dir = "asc"; 
-    /*Make a loop that will continue until
-    no switching has been done:*/
-    while (switching) {
-        //start by saying: no switching is done:
-        switching = false;
-        rows = table.rows;
-        /*Loop through all table rows (except the
-        first, which contains table headers):*/
-        for (i = 1; i < (rows.length - 1); i++) {
-            //start by saying there should be no switching:
-            shouldSwitch = false;
-            /*Get the two elements you want to compare,
-            one from current row and one from the next:*/
-            x = rows[i].getElementsByTagName("TD")[n];
-            y = rows[i + 1].getElementsByTagName("TD")[n];
-            /*check if the two rows should switch place,
-            based on the direction, asc or desc:*/
-            if (dir == "asc") {
-                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                //if so, mark as a switch and break the loop:
-                shouldSwitch= true;
-                break;
-                }
-            } else if (dir == "desc") {
-                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                //if so, mark as a switch and break the loop:
-                shouldSwitch = true;
-                break;
-                }
-            }
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("customTable");
+  switching = true;
+  //Set the sorting direction to ascending:
+  dir = "asc"; 
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /*check if the two rows should switch place,
+      based on the direction, asc or desc:*/
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch= true;
+        break;
         }
-        if (shouldSwitch) {
-            /*If a switch has been marked, make the switch
-            and mark that a switch has been done:*/
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            switching = true;
-            //Each time a switch is done, increase this count by 1:
-            switchcount ++;      
-            } else {
-            /*If no switching has been done AND the direction is "asc",
-            set the direction to "desc" and run the while loop again.*/
-            if (switchcount == 0 && dir == "asc") {
-                dir = "desc";
-                switching = true;
-            }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
         }
+      }
     }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      //Each time a switch is done, increase this count by 1:
+      switchcount ++;      
+      } else {
+      /*If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
 }
+//#endregion ####################################
 
 //#region  ################ collapsible #################
 
@@ -277,7 +271,7 @@ var TagInputData = [
   el.appendChild(datalist);
   el.appendChild(hiddenInput);
 
-  addTag('hello!');
+  // addTag('hello!');
 
   function addTag(text) {
     let tag = {
@@ -451,3 +445,161 @@ then close all select boxes: */
 document.addEventListener("click", closeAllSelect);
 
 //#endregion #################################
+
+//#region ####################### Slider / Progress ############################
+
+[].forEach.call(document.getElementsByClassName("slider"), function (slider) {
+  var slidertitle = slider.nextElementSibling;
+  
+  var sliderOffsetX = slider.getBoundingClientRect().left - document.documentElement.getBoundingClientRect().left;
+  //var sliderOffsetY = slider.getBoundingClientRect().top - document.documentElement.getBoundingClientRect().top;
+  // var sliderWidth = slider.offsetWidth - 1;
+  
+  checkProgressBardisabled();
+  UpdateProgressBar();
+  
+  window.addEventListener('resize', TooltipSliderResize);
+  function TooltipSliderResize() {
+    sliderOffsetX = slider.getBoundingClientRect().left - document.documentElement.getBoundingClientRect().left;
+    //sliderOffsetY = slider.getBoundingClientRect().top - document.documentElement.getBoundingClientRect().top;
+    // sliderWidth = slider.offsetWidth - 1;
+    checkProgressBardisabled();
+  }
+  
+  function checkProgressBardisabled() {
+    if(slider.getAttribute('disabled') != null) {
+      if(slider.getAttribute('showvalue') != null)
+      {
+        slidertitle.style.display = "initial";
+        slidertitle.innerHTML = slider.value;
+        var currentMouseXPos = (slider.clientWidth + window.pageXOffset) - sliderOffsetX;
+        slidertitle.style.left = currentMouseXPos + sliderOffsetX + 'px';
+        slidertitle.style.transform = "translate3d(-40%, 0, 0)";
+      }
+      return;
+    }
+    slidertitle.style.display = "none";
+    slidertitle.style.transform = "translate3d(-40%, -2.2em, 0)";
+  }
+  
+  slider.addEventListener('mousemove', function(event) {
+    sliderPostion(event, false, true);
+    slidertitle.style.display = "initial";
+  });
+  
+  slider.addEventListener('touchmove', function(event) {
+    sliderPostion(event, true);
+    slidertitle.style.display = "initial";
+  }, {passive: true});
+  
+  function sliderPostion(event, mobile, UpdatetitleContentOnHover) {
+    var valueHover,currentMouseXPos;
+    if(!mobile) {
+      valueHover = calcSliderPos(event).toFixed(2);
+      currentMouseXPos = (event.clientX + window.pageXOffset) - sliderOffsetX;
+    } else {
+      valueHover = slider.value;
+      currentMouseXPos = (event.touches[0].clientX + window.pageXOffset) - sliderOffsetX;
+    }
+    if(!UpdatetitleContentOnHover) {
+      valueHover = slider.value;
+    }
+  
+    // var valueHover = Math.round(currentMouseXPos / sliderWidth * 100 + 1);
+    //var valueHover = (currentMouseXPos / sliderWidth * 100).toFixed(2);
+    // this...
+    // if(valueHover < 1) valueHover = 0;
+    // ... and this are to make it easier to hover on the "0" and "100" positions
+    // if(valueHover > 99) valueHover = 100;
+  
+    if(100 >= valueHover && valueHover >= 0) {
+      slidertitle.style.transition = "none";
+      slidertitle.innerHTML = valueHover;
+      //slidertitle.style.top = sliderOffsetY - 15 + 'px';
+      slidertitle.style.left = currentMouseXPos + sliderOffsetX - 5 + 'px';
+    }
+    // Moves Tooltip, so it is not half out of screen on 0 and 100
+    if(98 <= valueHover) {
+      slidertitle.style.left = currentMouseXPos + sliderOffsetX - 28 + 'px';
+      slidertitle.style.transition = "left 0.15s ease-out";
+    }
+    if(valueHover <= 1) {
+      slidertitle.style.left = currentMouseXPos + sliderOffsetX + 20 + 'px';
+      slidertitle.style.transition = "left 0.15s ease-out";
+    }
+    UpdateProgressBar();
+  }
+  
+  function calcSliderPos(e) {
+    return (e.offsetX / e.target.clientWidth) *  parseInt(e.target.max,10);
+  }
+  
+  slider.addEventListener('mouseup', function(e) {
+    UpdateProgressBar();
+    document.activeElement.blur();
+  });
+  
+  slider.addEventListener('touchend', function(e) {
+    UpdateProgressBar();
+    document.activeElement.blur();
+    slidertitle.style.display = "none";
+  });
+  
+  slider.addEventListener('mouseout', function(e) {
+    slidertitle.style.display = "none";
+  });
+  
+  slider.onfocus = () => {
+    sliderfocus = true;
+  };
+  
+  slider.addEventListener('touchstart', function(e) {
+    sliderfocus = true;
+  }, {passive: true});
+  
+  slider.addEventListener('change', function(e) {
+    UpdateProgressBar();
+    checkProgressBardisabled();
+  });
+
+  function UpdateProgressBar()  {
+    slider.style.backgroundSize = (slider.value - slider.min) * 100 / (slider.max - slider.min) + '% 100%';
+  }
+
+});
+
+function SetProgressBar(elementid, newvalue)  {
+  var ele = document.getElementById(String(elementid));
+  ele.dispatchEvent(new Event("change"));
+  if(newvalue != undefined) {
+    ele.value = newvalue;
+  }
+}
+
+function SetProgressBarByTime(elementid, addvalue, interval)  {
+  var ele = document.getElementById(String(elementid));
+  var elementid = setInterval(() => {
+    let val = parseFloat(ele.value);
+    if(val <= parseFloat(ele.min) || val >= parseFloat(ele.max)) { ClearProgressBarInterval(elementid);return; }
+    SetProgressBar(elementid, val + parseFloat(addvalue));
+    // console.log(val + parseFloat(addvalue));
+  }, interval);
+}
+
+function ClearProgressBarInterval(intervalname)  {
+  clearInterval(intervalname);
+}
+
+function DisableProgressBar(elementid) {
+  var ele = document.getElementById(String(elementid));
+  ele.setAttribute('disabled', true);
+  ele.setAttribute('showvalue', true);
+}
+
+function ActiveProgressBar(elementid) {
+  var ele = document.getElementById(String(elementid));
+  ele.removeAttribute('disabled');
+  ele.removeAttribute('showvalue');
+}
+//#endregion ##############################
+
