@@ -10,13 +10,51 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SenpaiSam/CSSFramework@latest/sam-style.min.css">
 
 <body>
-    <div class="horizontal-center">
+    <!-- Header -->
+    <header class="header"> <!-- color-primary -->
+        <nav class="flex-wrap">
+            <img class="nav-img" alt="Logo" width="auto" height="auto">
+            <div class="nav-collapse flex-wrap">
+                <ul class="navbar-nav">
+                    <li>
+                        <a class="nav-link color-quit bcolor-custom" href="#">Home</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">Settings</a>
+                    </li>
+                </ul>
+                <!-- <input type="search" class="flat" name="nameinput" id="inputidsearchname" style="width: 25%;margin-right: 1rem;" placeholder="Suche.."/> --> <!-- onkeydown="onkeydown1()" onsearch="onsearch1()" -->
+                <ul class="navbar-nav ms-md-auto">
+                    <li>
+                        <a class="nav-link nav-link-icon" href="https://github.com/SenpaiSam/CSSFramework" target="_blank" rel="noopener">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 512 499.36" role="img"><path fill="currentColor" fill-rule="evenodd" d="M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z"></path></svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link nav-link-icon" href="https://github.com/SenpaiSam/CSSFramework" target="_blank" rel="noopener">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 512 499.36" role="img"><path fill="currentColor" fill-rule="evenodd" d="M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z"></path></svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link nav-link-icon" href="https://github.com/SenpaiSam/CSSFramework" target="_blank" rel="noopener">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 512 499.36" role="img"><path fill="currentColor" fill-rule="evenodd" d="M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z"></path></svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <a class="nav-link-special" href="#">Click</a>
+        </nav>
+    </header>
+    <div class="horizontal-center" style="margin-top: 1rem;">
         <a href="https://github.com/SenpaiSam/CSSFramework" target="_blank" rel="noopener" ><button style="width: 100%;">Go to Github respo</button></a>
         <br><br>
         <a href="https://senpaisam.github.io/CSSFramework/documentation.html" target="_blank" rel="noopener" ><button style="width: 100%;">Go to documentation site</button></a>
         <br><br><br><br>
         <!-- Select -->
-        <select class="pointer" onchange="themecolor(this.value)">
+        <select class="pointer" style="width: 100%;" onchange="themecolor(this.value)">
             <option value="light" selected>light theme</option>
             <option value="dark">dark theme</option>
             <option value="blue">blue theme</option>
@@ -35,7 +73,7 @@
         <!-- Button -->
         <button onclick="flatswitch()">normal/flat Mode Switch</button>
         <br><br>
-        <!-- Custom Select-->
+        <!-- Custom Select -->
         <div class="custom-select" id="test"> <!-- loadSelect("test",3); -> display option from data -->
             <input type="hidden" /> <!-- onchange="Test(this.value)" -->
             <select>
@@ -61,7 +99,7 @@
         </label>
         <br><br>
         <!-- Select with Datalist -->
-        <input list="datalistetest" id="inputid" name="inputname" placeholder="Eingabe.." disabled/>
+        <input list="datalistetest" id="inputiddatalist" name="inputname" style="width: 100%;" placeholder="Eingabe.." disabled/>
         <datalist id="datalistetest">
             <option value="Chrome">
             <option value="Firefox">
@@ -71,13 +109,13 @@
         </datalist>
         <br><br>
         <!-- Input Search -->
-        <input type="search" name="nameinput" id="inputid"  placeholder="Suche.."/> <!-- onkeydown="onkeydown1()" onsearch="onsearch1()" -->
+        <input type="search" name="nameinputSearch" id="inputid" style="width: 100%;"  placeholder="Suche.."/> <!-- onkeydown="onkeydown1()" onsearch="onsearch1()" -->
         <br><br>
         <!-- Textarea -->
-        <textarea style="height: 50px;" placeholder="Eingabe.."></textarea>
+        <textarea id="textareaname" style="height: 50px;width: 100%;" placeholder="Eingabe.."></textarea>
         <br><br>
         <!-- Input Table Search -->
-        <input type="search" name="nameinput" id="searchTable"  placeholder="Suche Tabele Name.." onkeyup="tablesearchfilter()" onsearch="tablesearchfilter()" />
+        <input type="search" style="width: 100%;" name="nameinputSearchTable" id="searchTable"  placeholder="Suche Tabele Name.." onkeyup="tablesearchfilter()" onsearch="tablesearchfilter()" />
         <br><br>
         <!-- Table -->
         <table id="customTable" class="pointer">
@@ -131,17 +169,26 @@
         <!-- Card confirm -->
         <div class="card text-center">
             <p>Do you want to quit?</p>
-            <button class="btn-quit btn-customcolor" style="margin-right: 0.5em;">quit</button>
-            <button class="btn-confirm btn-customcolor">stay</button>
+            <button class="bcolor-quit bcolor-custom" style="margin-right: 0.5em;">quit</button>
+            <button class="bcolor-confirm bcolor-custom">stay</button>
         </div>
         <br><br>
         <!-- Card input -->
         <div class="card text-center">
             <p>Tell something?</p>
-            <input type="search" name="nameinput" id="inputid"  placeholder="Eingabe.." style="margin-bottom: 1.4em;"/>
+            <input type="search" name="nameinput" id="inputid"  placeholder="Eingabe.." style="width: 100%;;margin-bottom: 1.4em;"/>
             <button style="margin-right: 0.5em;">back</button>
-            <button class="btn-primary btn-customcolor">send</button>
+            <button class="bcolor-primary bcolor-custom">send</button>
         </div>
+        <br><br>
+        <label for="progressslidername">Slider:</label>
+        <input id="progressslidername" type="range" min="0" max="100" step="0.01" value="10" class="slider"/> <!-- disabled ; showvalue -->
+        <span class="slidertitle"></span>
+        <br><br>
+        <label for="progressslidername2">Progress:</label>
+        <input id="progressslidername2" type="range" min="0" max="100" step="0.01" value="10" class="slider" disabled showvalue/> <!-- disabled ; showvalue -->
+        <span class="slidertitle"></span>
+        <br><br>
     </div>
 </body>
 <!-- <script src="sam-javascript.js"></script> -->
