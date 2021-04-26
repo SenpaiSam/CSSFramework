@@ -4,7 +4,7 @@ little CSS / JS Framework for HTML Components.
 
 ## Visit sites
 - [Visit showcase site](https://senpaisam.github.io/CSSFramework/)
-- [Visit documentation site](https://senpaisam.github.io/CSSFramework/)
+- [Visit documentation site](https://senpaisam.github.io/CSSFramework/documentation.html)
 
 ## Content
 
