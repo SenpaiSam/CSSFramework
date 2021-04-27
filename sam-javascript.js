@@ -472,8 +472,7 @@ document.addEventListener("click", closeAllSelect);
       {
         slidertitle.style.display = "initial";
         slidertitle.innerHTML = slider.value;
-        var currentMouseXPos = (slider.clientWidth + window.pageXOffset) - sliderOffsetX;
-        slidertitle.style.left = currentMouseXPos + sliderOffsetX + 'px';
+        slidertitle.style.left = slider.offsetWidth/2 - 5 + 'px';
         slidertitle.style.transform = "translate3d(-40%, 0, 0)";
       }
       return;
@@ -504,7 +503,6 @@ document.addEventListener("click", closeAllSelect);
     if(!UpdatetitleContentOnHover) {
       valueHover = slider.value;
     }
-  
     // var valueHover = Math.round(currentMouseXPos / sliderWidth * 100 + 1);
     //var valueHover = (currentMouseXPos / sliderWidth * 100).toFixed(2);
     // this...
@@ -516,22 +514,22 @@ document.addEventListener("click", closeAllSelect);
       slidertitle.style.transition = "none";
       slidertitle.innerHTML = valueHover;
       //slidertitle.style.top = sliderOffsetY - 15 + 'px';
-      slidertitle.style.left = currentMouseXPos + sliderOffsetX - 5 + 'px';
+      slidertitle.style.left = currentMouseXPos - 5  + 'px';
     }
     // Moves Tooltip, so it is not half out of screen on 0 and 100
     if(98 <= valueHover) {
-      slidertitle.style.left = currentMouseXPos + sliderOffsetX - 28 + 'px';
+      slidertitle.style.left = currentMouseXPos - 28 + 'px';
       slidertitle.style.transition = "left 0.15s ease-out";
     }
     if(valueHover <= 1) {
-      slidertitle.style.left = currentMouseXPos + sliderOffsetX + 20 + 'px';
+      slidertitle.style.left = currentMouseXPos + 20 + 'px';
       slidertitle.style.transition = "left 0.15s ease-out";
     }
     UpdateProgressBar();
   }
   
   function calcSliderPos(e) {
-    return (e.offsetX / e.target.clientWidth) *  parseInt(e.target.max,10);
+    return (e.offsetX / e.target.clientWidth) * parseInt(e.target.max,10);
   }
   
   slider.addEventListener('mouseup', function(e) {
@@ -573,6 +571,7 @@ function SetProgressBar(elementid, newvalue)  {
   ele.dispatchEvent(new Event("change"));
   if(newvalue != undefined) {
     ele.value = newvalue;
+    ele.dispatchEvent(new Event("change"));
   }
 }
 
