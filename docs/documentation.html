@@ -397,21 +397,27 @@
             <h1 id="slider-progressbar">Slider / Progress system</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
             <div class="component-preview">
-                <label for="progressslidername">Slider:</label>
-                <input id="progressslidername" type="range" min="0" max="100" step="0.01" value="10" class="slider"/> <!-- disabled ; showvalue -->
-                <span class="slidertitle"></span>
+                <div style="position: relative;padding: 0;">
+                    <label for="progressslidername">Slider:</label><br>
+                    <input id="progressslidername" type="range" min="0" max="100" step="0.01" value="10" class="slider"/> <!-- disabled ; showvalue -->
+                    <span class="slidertitle"></span>
+                </div>
                 <br><br>
-                <label for="progressslidername2">Progress:</label>
-                <input id="progressslidername2" type="range" min="0" max="100" step="0.01" value="10" class="slider" disabled showvalue/> <!-- disabled ; showvalue -->
-                <span class="slidertitle"></span>
+                <div style="position: relative;padding: 0;">
+                    <label for="progressslidername2">Progress:</label><br>
+                    <input id="progressslidername2" type="range" min="0" max="100" step="0.01" value="50" class="slider" disabled showvalue/> <!-- disabled ; showvalue -->
+                    <span class="slidertitle"></span>
+                </div>
                 <div class="code">
-                    <code>&lt;label for="progressslidername">Slider:&lt;/label><br>
+                    <code>&lt;div style="position: relative;padding: 0;"><br>
+		    	&lt;label for="progressslidername">Slider:&lt;/label>&lt;br><br>
                         &lt;input id="progressslidername" type="range" min="0" max="100" step="0.01" value="10" class="slider"/> <!-- disabled ; showvalue --><br>
                         &lt;span class="slidertitle">&lt;/span><br>
                     <br>
-                        &lt;label for="progressslidername2">Progress:&lt;/label><br>
+                        &lt;label for="progressslidername2">Progress:&lt;/label>&lt;br><br>
                         &lt;input id="progressslidername2" type="range" min="0" max="100" step="0.01" value="10" class="slider" disabled showvalue/> <!-- disabled ; showvalue --><br>
-                        &lt;span class="slidertitle">&lt;/span>
+                        &lt;span class="slidertitle">&lt;/span><br>
+		    	&lt;/div>
                     </code>
                 </div>
             </div>
