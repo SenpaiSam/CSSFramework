@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS-Framework</title>
+    <title>SAM-Framework</title>
 </head>
-<!-- <link rel="stylesheet" href="sam-style.css"> -->
+<!-- <link rel="stylesheet" href="../sam-style.css"> DEV -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SenpaiSam/CSSFramework@latest/sam-style.min.css">
 
 <body>
@@ -49,11 +49,16 @@
         </nav>
     </header>
     <div class="horizontal-center" style="margin-top: 1rem;">
+        <h1>SAM Framework<span style="font-size: 0.9rem;margin-left: 0.7rem;background-color: var(--Popup);color: rgb(var(--PopupLabel));padding: 0.3rem;border-radius: var(--borderradius-component);position: relative; top: -5px;">BETA</span></h1>
+        <h4 style="margin-bottom: 0.7em;">Visit Github respo:</h4>
         <a href="https://github.com/SenpaiSam/CSSFramework" target="_blank" rel="noopener" ><button style="width: 100%;">Go to Github respo</button></a>
-        <br><br>
+        <br>
+        <h4 style="margin-bottom: 0.7em;">Visit framework documentation:</h4>
         <a href="https://senpaisam.github.io/CSSFramework/documentation.html" target="_blank" rel="noopener" ><button style="width: 100%;">Go to documentation site</button></a>
         <br><br><br><br>
+        <h1>Showcase site</h1>
         <!-- Select -->
+        <h4 style="margin-bottom: 0.7em;">Change color theme:</h4>
         <select class="pointer" style="width: 100%;" onchange="themecolor(this.value)">
             <option value="light" selected>light theme</option>
             <option value="dark">dark theme</option>
@@ -93,13 +98,13 @@
         </div>
         <br><br>
         <!-- Checkbox -->
-        <label class="container" for="checkboxid">Test:
+        <label class="container" for="checkboxid">Checkbox:
             <input type="checkbox" id="checkboxid" checked>
             <span class="checkmark"></span>
         </label>
         <br><br>
         <!-- Select with Datalist -->
-        <input list="datalistetest" id="inputiddatalist" name="inputname" style="width: 100%;" placeholder="Eingabe.." disabled/>
+        <input list="datalistetest" id="inputiddatalist" name="inputname" style="width: 100%;" placeholder="Input Datalist.." disabled/>
         <datalist id="datalistetest">
             <option value="Chrome">
             <option value="Firefox">
@@ -109,13 +114,13 @@
         </datalist>
         <br><br>
         <!-- Input Search -->
-        <input type="search" name="nameinputSearch" id="inputid" style="width: 100%;"  placeholder="Suche.."/> <!-- onkeydown="onkeydown1()" onsearch="onsearch1()" -->
+        <input type="search" name="nameinputSearch" id="inputid" style="width: 100%;"  placeholder="Search.."/> <!-- onkeydown="onkeydown1()" onsearch="onsearch1()" -->
         <br><br>
         <!-- Textarea -->
-        <textarea id="textareaname" style="height: 50px;width: 100%;" placeholder="Eingabe.."></textarea>
+        <textarea id="textareaname" style="height: 50px;width: 100%;" placeholder="Input textarea.."></textarea>
         <br><br>
         <!-- Input Table Search -->
-        <input type="search" style="width: 100%;" name="nameinputSearchTable" id="searchTable"  placeholder="Suche Tabele Name.." onkeyup="tablesearchfilter()" onsearch="tablesearchfilter()" />
+        <input type="search" style="width: 100%;" name="nameinputSearchTable" id="searchTable"  placeholder="Search table name.." onkeyup="tablesearchfilter()" onsearch="tablesearchfilter()" />
         <br><br>
         <!-- Table -->
         <table id="customTable" class="pointer">
@@ -151,7 +156,7 @@
         <!-- Input File -->
         <input type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" multiple/> <!--  data-multiple-caption="{count} files selected" multiple   -->
         <label for="file"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="48px" height="48px"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
-            <span>Durchsuchen</span>
+            <span>Choose file</span>
         </label>
         <br><br>
         <!-- Tags -->
@@ -181,16 +186,38 @@
             <button class="bcolor-primary bcolor-custom">send</button>
         </div>
         <br><br>
-        <label for="progressslidername">Slider:</label>
-        <input id="progressslidername" type="range" min="0" max="100" step="0.01" value="10" class="slider"/> <!-- disabled ; showvalue -->
-        <span class="slidertitle"></span>
+        <div style="position: relative;padding: 0;">
+            <label for="progressslidername">Slider:</label>
+            <input id="progressslidername" type="range" min="0" max="100" step="0.01" value="10" class="slider"/> <!-- disabled ; showvalue -->
+            <span class="slidertitle"></span>
+        </div>
         <br><br>
-        <label for="progressslidername2">Progress:</label>
-        <input id="progressslidername2" type="range" min="0" max="100" step="0.01" value="10" class="slider" disabled showvalue/> <!-- disabled ; showvalue -->
-        <span class="slidertitle"></span>
+        <div style="position: relative;padding: 0;">
+            <label for="progressslidername2">Progress:</label>
+            <input id="progressslidername2" type="range" min="0" max="100" step="0.01" value="10" class="slider" disabled showvalue/>
+            <span class="slidertitle"></span>
+        </div>
         <br><br>
     </div>
 </body>
-<!-- <script src="sam-javascript.js"></script> -->
+<script>
+    var TagInputData = [
+    {
+        name: "tagPerson",
+        onlyfromData: true,
+        multipleData: false,
+        // removeTagformDataifUsed: false,
+        addData: ["01 Hello", "02 Lol", "02 Du","Kek"],
+    },
+    {
+        name: "tagPersonLol",
+        onlyfromData: false,
+        multipleData: true,
+        // removeTagformDataifUsed: false,
+        addData: ["Hello", "Du"],
+    }
+    ];
+</script>
+<!-- <script src="../sam-javascript.js"></script> DEV -->
 <script src="https://cdn.jsdelivr.net/gh/SenpaiSam/CSSFramework@latest/sam-javascript.min.js"></script>
 </html>

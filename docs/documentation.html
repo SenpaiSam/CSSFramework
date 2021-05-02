@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sam-CSS Documentation</title>
+    <title>SAM Framework Documentation</title>
 </head>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SenpaiSam/CSSFramework@latest/sam-style.min.css">
 <link rel="stylesheet" href="samdocs.css">
 <body>
     <div class="docs-row">
         <div class="docs-sticky">
-            <h1 style="margin-bottom: 0px;">Docs Sam-CSS</h1>
-            <h3 style="margin-top: 0px;">BETA</h3>
+            <h1>SAM Framework<span style="font-size: 0.9rem;margin-left: 0.7rem;background-color: var(--Popup);color: rgb(var(--PopupLabel));padding: 0.3rem;border-radius: var(--borderradius-component);position: relative; top: -5px;">BETA</span></h1>
             <h4>Main</h4>
             <ul class="docs-componentslist">
                 <li><a href="#main">Main</a></li>
@@ -52,27 +51,29 @@
             <p>First, add your CSS theme color code before you link the CSS-Framework. Secondly add "addthemecolor('yourcolorthemename');" in your js code. (CSS color theme template below)</p>
             <div class="component-preview">
                 <div class="code">
-                    <p>body:not(.style-scope)[yourcolorthemename] {<br>
-	                    --Background: #181818;<br>
-                        --Primary: 187, 134, 252;<br>
-                        --Secondary: 3, 218, 198;<br>
-                        --OnBackground: 255, 255, 255;<br>
-                        --OnPrimary: 0, 0, 0;<br>
-                        --OnSecondary: 0, 0, 0;<br>
-                        --Popup: #FFFFFF;<br>
-                        --PopupLabel: 0, 0, 0;<br>
-                        --sliderthumbcolor: var(--Primary);<br>
-                        --hover: brightness(80%);<br>
-                    }
-                    </p>
-                    <br>
-                    <p>addthemecolor('yourcolorthemename');</p>
+                    <code><b>CSS:</b><br>
+                        body[yourcolorthemename] {<br>
+                            --Background: #181818;<br>
+                            --Primary: 187, 134, 252;<br>
+                            --Secondary: 3, 218, 198;<br>
+                            --OnBackground: 255, 255, 255;<br>
+                            --OnPrimary: 0, 0, 0;<br>
+                            --OnSecondary: 0, 0, 0;<br>
+                            --Popup: #FFFFFF;<br>
+                            --PopupLabel: 0, 0, 0;<br>
+                            --sliderthumbcolor: var(--Primary);<br>
+                            --hover: brightness(80%);<br>
+                        }<br>
+                        <br>
+                        <b>JS:</b><br>
+                        addthemecolor('yourcolorthemename');
+                    </code>
                 </div>
             </div>
             
             <!-- Select -->
             <h1 id="select">Select</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
             <div class="component-preview">
                 <select class="pointer" style="width: 100%;" onchange="themecolor(this.value)">
                     <option value="light" selected>light theme</option>
@@ -95,9 +96,9 @@
             
             <!-- Custom Select-->
             <h1 id="cselect">Custom Select</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
             <div class="component-preview">
-                <div class="custom-select" id="test"> <!-- loadSelect("test",3); -> display option from data -->
+                <div class="custom-select" id="test">
                     <input type="hidden" /> <!-- onchange="Test(this.value)" -->
                     <select>
                         <option value="0">Select color:</option>
@@ -115,9 +116,9 @@
                     </select>
                 </div>
                 <div class="code">
-                    <code>
-                        &lt;div class="custom-select" id="test"> <!-- loadSelect("test",3); -> display option from data --><br>
-                        &lt;input type="hidden" /> <!-- onchange="Test(this.value)" --><br>
+                    <code><b>HTML:</b><br>
+                        &lt;div class="custom-select" id="YourElementID"><br>
+                        &lt;input type="hidden" onchange=">YourFunction(this.value)"/><br>
                         &lt;select><br>
                         &lt;option value="0">Select color:&lt;/option><br>
                         &lt;option value="1">Red&lt;/option><br>
@@ -125,14 +126,17 @@
                         &lt;option value="3">Cyan&lt;/option><br>
                         &lt;option value="4">Orange&lt;/option><br>
                         &lt;/select><br>
-                        &lt;/div>
+                        &lt;/div><br>
+                        <br>
+                        <b>JS:</b><br>
+                        loadSelect("YourElementID",3); -> load option
                     </code>
                 </div>
             </div>
 
             <!-- Button -->
             <h1 id="button">Button</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
             <div class="component-preview">
                 <button onclick="flatswitch()">normal/flat Mode Switch</button>
                 <div class="code">
@@ -143,7 +147,7 @@
 
             <!-- Navbar -->
             <h1 id="navbar">Navbar</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
             <div class="component-preview">
                 <nav class="nav">
                     <a href="#" class="nav-item nav-item-active">Active</a>
@@ -164,14 +168,14 @@
             
             <!-- Checkbox -->
             <h1 id="checkbox">Checkbox</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
             <div class="component-preview">
-                <label class="container" for="checkboxid">Test:
+                <label class="container" for="checkboxid">Checkbox:
                     <input type="checkbox" id="checkboxid" checked>
                     <span class="checkmark"></span>
                 </label>
                 <div class="code">
-                    <code>&lt;label class="container" for="checkboxid">Test:<br>
+                    <code>&lt;label class="container" for="checkboxid">Checkbox:<br>
                         &lt;input type="checkbox" id="checkboxid" checked><br>
                         &lt;span class="checkmark">&lt;/span><br>
                         &lt;/label>
@@ -181,9 +185,9 @@
 
             <!-- Select with Datalist -->
             <h1 id="selectwdatalist">Select with Datalist</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
             <div class="component-preview">
-                <input list="datalistetest" id="inputid" name="inputname" style="width: 100%;" placeholder="Eingabe.."/>
+                <input list="datalistetest" id="inputid" name="inputname" style="width: 100%;" placeholder="Input Datalist.."/>
                 <datalist id="datalistetest">
                     <option value="Chrome">
                     <option value="Firefox">
@@ -192,7 +196,7 @@
                     <option value="Safari">
                 </datalist>
                 <div class="code">
-                    <code>&lt;input list="datalistetest" id="inputid" name="inputname" style="width: 100%;" placeholder="Eingabe.." disabled/><br>
+                    <code>&lt;input list="datalistetest" id="inputid" name="inputname" style="width: 100%;" placeholder="Input Datalist.." disabled/><br>
                         &lt;datalist id="datalistetest"><br>
                         &lt;option value="Chrome"><br>
                         &lt;option value="Firefox"><br>
@@ -206,40 +210,40 @@
 
             <!-- Input Search -->
             <h1 id="inputsearch">Input Search</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
             <div class="component-preview">
-                <input type="search" name="nameinput" id="inputid" style="width: 100%;" placeholder="Suche.."/> <!-- onkeydown="onkeydown1()" onsearch="onsearch1()" -->
+                <input type="search" name="nameinput" id="inputid" style="width: 100%;" placeholder="Search.."/> <!-- onkeydown="onkeydown1()" onsearch="onsearch1()" -->
                 <div class="code">
-                    <code>&lt;input type="search" name="nameinput" id="inputid" style="width: 100%;" placeholder="Suche.."/> <!-- onkeydown="onkeydown1()" onsearch="onsearch1()" -->
+                    <code>&lt;input type="search" name="nameinput" id="inputid" style="width: 100%;" placeholder="Search.."/> <!-- onkeydown="onkeydown1()" onsearch="onsearch1()" -->
                     </code>
                 </div>
             </div>
 
             <!-- Textarea -->
             <h1 id="textarea">Textarea</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
             <div class="component-preview">
-                <textarea style="height: 50px;width: 100%;" placeholder="Eingabe.."></textarea>
+                <textarea style="height: 50px;width: 100%;" placeholder="Input textarea.."></textarea>
                 <div class="code">
-                    <code>&lt;textarea style="height: 50px;" style="width: 100%;" placeholder="Eingabe..">&lt;/textarea>
+                    <code>&lt;textarea style="height: 50px;" style="width: 100%;" placeholder="Input textarea..">&lt;/textarea>
                     </code>
                 </div>
             </div>
 
             <!-- Input Table Search -->
             <h1 id="inputtablesearch">Input Table Search</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
             <div class="component-preview">
-                <input type="search" name="nameinput" id="searchTable" style="width: 100%;" placeholder="Suche Tabele Name.." onkeyup="tablesearchfilter()" onsearch="tablesearchfilter()" />
+                <input type="search" name="nameinput" id="searchTable" style="width: 100%;" placeholder="Search table names.." onkeyup="tablesearchfilter()" onsearch="tablesearchfilter()" />
                 <div class="code">
-                    <code>&lt;input type="search" name="nameinput" id="searchTable" style="width: 100%;" placeholder="Suche Tabele Name.." onkeyup="tablesearchfilter()" onsearch="tablesearchfilter()" />
+                    <code>&lt;input type="search" name="nameinput" id="searchTable" style="width: 100%;" placeholder="Search table names.." onkeyup="tablesearchfilter()" onsearch="tablesearchfilter()" />
                     </code>
                 </div>
             </div>
 
             <!-- Table -->
             <h1 id="table">Table</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
             <div class="component-preview">
                 <table id="customTable" class="pointer">
                     <thead>
@@ -251,15 +255,15 @@
                     <tbody>
                         <tr>
                             <td>Max Musterman</td>
-                            <td>Ja</td>
+                            <td>Yes</td>
                         </tr>
                         <tr>
                             <td>Bax Musterman</td>
-                            <td>Nein</td>
+                            <td>No</td>
                         </tr>
                         <tr>
                             <td>Sax Musterman</td>
-                            <td>Nein</td>
+                            <td>No</td>
                         </tr>
                     </tbody>
                 </table>
@@ -274,15 +278,15 @@
                         &lt;tbody><br>
                         &lt;tr><br>
                         &lt;td>Max Musterman&lt;/td><br>
-                        &lt;td>Ja&lt;/td><br>
+                        &lt;td>Yes&lt;/td><br>
                         &lt;/tr><br>
                         &lt;tr><br>
                         &lt;td>Bax Musterman&lt;/td><br>
-                        &lt;td>Nein&lt;/td><br>
+                        &lt;td>Non&lt;/td><br>
                         &lt;/tr><br>
                         &lt;tr><br>
                         &lt;td>Sax Musterman&lt;/td><br>
-                        &lt;td>Nein&lt;/td><br>
+                        &lt;td>No&lt;/td><br>
                         &lt;/tr><br>
                         &lt;/tbody><br>
                         &lt;/table>
@@ -292,7 +296,7 @@
 
             <!-- Collapsible -->
             <h1 id="collapsible">Collapsible</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
             <div class="component-preview">
                 <button class="collapsible">Collapsible</button>
                 <div class="collapsiblecontent">
@@ -311,16 +315,16 @@
 
             <!-- Input File -->
             <h1 id="inputfile">Input File</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
             <div class="component-preview">
                 <input type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" multiple/> <!--  data-multiple-caption="{count} files selected" multiple   -->
                 <label for="file"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="48px" height="48px"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
-                    <span>Durchsuchen</span>
+                    <span>Choose File</span>
                 </label>
                 <div class="code">
-                    <code>&lt;input type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" multiple/><br> <!--  data-multiple-caption="{count} files selected" multiple   -->
+                    <code>&lt;input type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" multiple/> &lt;!--  data-multiple-caption="{count} files selected" multiple   --><br>
                         &lt;label for="file">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="48px" height="48px">&lt;path d="M0 0h24v24H0z" fill="none"/>&lt;path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/>&lt;/svg><br>
-                        &lt;span>Durchsuchen&lt;/span><br>
+                        &lt;span>Choose File&lt;/span><br>
                         &lt;/label>
                     </code>
                 </div>
@@ -329,7 +333,7 @@
 
             <!-- Tooltip -->
             <h1 id="tooltip">Tooltip</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
             <div class="component-preview">
                 <div class="tooltip">Hover over me
                     <span class="tooltiptext">Tooltip text</span>
@@ -344,18 +348,18 @@
 
             <!-- Card confirm -->
             <h1 id="cardconfirm">Card confirm</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
             <div class="component-preview">
                 <div class="card text-center">
                     <p>Do you want to quit?</p>
-                    <button class="btn-quit btn-customcolor" style="margin-right: 0.5em;">quit</button>
-                    <button class="btn-confirm btn-customcolor">stay</button>
+                    <button class="bcolor-quit bcolor-custom" style="margin-right: 0.5em;">quit</button>
+                    <button class="bcolor-confirm bcolor-custom">stay</button>
                 </div>
                 <div class="code">
                     <code>&lt;div class="card text-center"><br>
                         &lt;p>Do you want to quit?&lt;/p><br>
-                        &lt;button class="bcolor-quit bcolor-custom" style="margin-right: 0.5em;">quit&lt;/button><br>
-                        &lt;button class="bcolor-confirm bcolor-custom">stay&lt;/button><br>
+                        &lt;button class="bcolor-quit bcolor-custom" style="margin-right: 0.5em;">quit&lt;/button>
+                        &lt;button class="bcolor-confirm bcolor-custom">stay&lt;/button>
                         &lt;/div>
                     </code>
                 </div>
@@ -363,18 +367,18 @@
 
             <!-- Card input -->
             <h1 id="cardinput">Card input</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
             <div class="component-preview">
                 <div class="card text-center">
                     <p>Tell something?</p>
-                    <input type="search" name="nameinput" id="inputid"  placeholder="Eingabe.." style="margin-bottom: 1.4em;"/>
+                    <input type="search" name="nameinput" id="inputid" placeholder="Input.." style="width: 100%;margin-bottom: 1.4em;"/>
                     <button style="margin-right: 0.5em;">back</button>
                     <button class="bcolor-primary bcolor-custom">send</button>
                 </div>
                 <div class="code">
                     <code>&lt;div class="card text-center"><br>
                         &lt;p>Tell something?&lt;/p><br>
-                        &lt;input type="search" name="nameinput" id="inputid"  placeholder="Eingabe.." style="margin-bottom: 1.4em;"/><br>
+                        &lt;input type="search" name="nameinput" id="inputid" placeholder="Input.." style="width: 100%;margin-bottom: 1.4em;"/><br>
                         &lt;button style="margin-right: 0.5em;">back&lt;/button><br>
                         &lt;button class="bcolor-primary bcolor-custom">send&lt;/button><br>
                         &lt;/div>
@@ -384,18 +388,40 @@
 
             <!-- Tags -->
             <h1 id="tagssystem">Tags System</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
             <div class="component-preview">
                 <div name="tagPerson" class="tags-input" data-name="tags-input"></div>
                 <br><br>
                 <div name="tagPersonLol" class="tags-input" data-name="tags-input">
                     <span class="tag">Hello<span class="close"></span></span>
                 </div>
+                <div class="code">
+                    <code><b>HTML:</b><br>
+                        &lt;div name="tagname" class="tags-input" data-name="tags-input">&lt;/div><br>
+                        <b>JS:</b><br>
+                        var TagInputData = [<br>
+                        {<br>
+                            name: "tagPerson",<br>
+                            onlyfromData: true,<br>
+                            multipleData: false,<br>
+                            // removeTagformDataifUsed: false,<br>
+                            addData: ["01 Hello", "02 Lol", "02 Du","Kek"],<br>
+                        },<br>
+                        {<br>
+                            name: "tagPersonLol",<br>
+                            onlyfromData: false,<br>
+                            multipleData: true,<br>
+                            // removeTagformDataifUsed: false,<br>
+                            addData: ["Hello", "Du"],<br>
+                        }<br>
+                        ];
+                    </code>
+                </div>
             </div>
 
            <!-- Slider / Progress system -->
             <h1 id="slider-progressbar">Slider / Progress system</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
             <div class="component-preview">
                 <div style="position: relative;padding: 0;">
                     <label for="progressslidername">Slider:</label><br>
@@ -409,15 +435,23 @@
                     <span class="slidertitle"></span>
                 </div>
                 <div class="code">
-                    <code>&lt;div style="position: relative;padding: 0;"><br>
-		    	&lt;label for="progressslidername">Slider:&lt;/label>&lt;br><br>
+                    <code><b>HTML:</b><br>
+                        &lt;div style="position: relative;padding: 0;"><br>
+		    	        &lt;label for="progressslidername">Slider:&lt;/label>&lt;br><br>
                         &lt;input id="progressslidername" type="range" min="0" max="100" step="0.01" value="10" class="slider"/> <!-- disabled ; showvalue --><br>
                         &lt;span class="slidertitle">&lt;/span><br>
                     <br>
                         &lt;label for="progressslidername2">Progress:&lt;/label>&lt;br><br>
-                        &lt;input id="progressslidername2" type="range" min="0" max="100" step="0.01" value="10" class="slider" disabled showvalue/> <!-- disabled ; showvalue --><br>
+                        &lt;input id="progressslidername2" type="range" min="0" max="100" step="0.01" value="10" class="slider" disabled showvalue/><br>
                         &lt;span class="slidertitle">&lt;/span><br>
-		    	&lt;/div>
+		    	        &lt;/div><br>
+                        <br>
+                        <b>JS:</b><br>
+                        SetProgressBar(elementid, newvalue);<br>
+                        SetProgressBarByTime(elementid, addvalue, interval, <i>stopvalue</i>)<br>
+                        SetProgressBarByTimeDecrease(elementid, minusvalue, interval, <i>stopvalue</i>)<br>
+                        DisableProgressBar(elementid)<br>
+                        ActiveProgressBar(elementid)
                     </code>
                 </div>
             </div>
@@ -426,5 +460,23 @@
         </div>
     </div>
 </body>
+<script>
+    var TagInputData = [
+    {
+        name: "tagPerson",
+        onlyfromData: true,
+        multipleData: false,
+        // removeTagformDataifUsed: false,
+        addData: ["01 Hello", "02 Lol", "02 Du","Kek"],
+    },
+    {
+        name: "tagPersonLol",
+        onlyfromData: false,
+        multipleData: true,
+        // removeTagformDataifUsed: false,
+        addData: ["Hello", "Du"],
+    }
+    ];
+</script>
 <script src="https://cdn.jsdelivr.net/gh/SenpaiSam/CSSFramework@latest/sam-javascript.min.js"></script>
 </html>

@@ -1,6 +1,4 @@
-# CSSFramework
-
-little CSS / JS Framework for HTML Components.
+# SAM Framework
 
 ## Visit sites
 - [Visit showcase site](https://senpaisam.github.io/CSSFramework/)
@@ -8,9 +6,9 @@ little CSS / JS Framework for HTML Components.
 
 ## Content
 
-Possibility to add color themes easily.
-helo
-1. Components
+1. Possibility to add own color themes easily
+
+2. Components
 - Input
 - Select
 - Textarea

@@ -142,22 +142,22 @@ Array.prototype.forEach.call(inputs, function(input)
 //#endregion #################################
 
 //#region  ################ Tags #################
-var TagInputData = [
-  {
-    name: "tagPerson",
-    onlyfromData: true,
-    multipleData: false,
-    // removeTagformDataifUsed: false,
-    addData: ["01 Hello", "02 Lol", "02 Du","Kek"],
-  },
-  {
-    name: "tagPersonLol",
-    onlyfromData: false,
-    multipleData: true,
-    // removeTagformDataifUsed: false,
-    addData: ["Hello", "Du"],
-  }
-];
+// var TagInputData = [
+//   {
+//     name: "tagPerson",
+//     onlyfromData: true,
+//     multipleData: false,
+//     // removeTagformDataifUsed: false,
+//     addData: ["01 Hello", "02 Lol", "02 Du","Kek"],
+//   },
+//   {
+//     name: "tagPersonLol",
+//     onlyfromData: false,
+//     multipleData: true,
+//     // removeTagformDataifUsed: false,
+//     addData: ["Hello", "Du"],
+//   }
+// ];
 
 [].forEach.call(document.getElementsByClassName('tags-input'), function (el) {
   let hiddenInput = document.createElement('input'),
@@ -238,7 +238,7 @@ var TagInputData = [
 
   function checkIfDuplicateExists(w){
     return new Set(w).size !== w.length;
-}
+  }
 
   function GetCurrentInputIndex() {
     var index;
@@ -420,7 +420,6 @@ function closeAllSelect(elmnt) {
   }
 }
 
-
 function loadSelect(id,value) {
   var a = document.getElementById(id);
   var selctindex = 0;
@@ -467,18 +466,13 @@ document.addEventListener("click", closeAllSelect);
   }
   
   function checkProgressBardisabled() {
-    if(slider.getAttribute('disabled') != null) {
-      if(slider.getAttribute('showvalue') != null)
-      {
-        slidertitle.style.display = "initial";
-        slidertitle.innerHTML = slider.value;
-        slidertitle.style.left = slider.offsetWidth/2 - 5 + 'px';
-        slidertitle.style.transform = "translate3d(-40%, 0, 0)";
-      }
-      return;
-    }
     slidertitle.style.display = "none";
     slidertitle.style.transform = "translate3d(-40%, -2.2em, 0)";
+    if(slider.getAttribute('showvalue') == null) return;
+    slidertitle.style.display = "initial";
+    slidertitle.innerHTML = slider.value;
+    slidertitle.style.left = slider.offsetWidth/2 - 5 + 'px';
+    slidertitle.style.transform = "translate3d(-40%, 0, 0)";
   }
   
   slider.addEventListener('mousemove', function(event) {
@@ -567,21 +561,37 @@ document.addEventListener("click", closeAllSelect);
 });
 
 function SetProgressBar(elementid, newvalue)  {
-  var ele = document.getElementById(String(elementid));
-  ele.dispatchEvent(new Event("change"));
-  if(newvalue != undefined) {
-    ele.value = newvalue;
-    ele.dispatchEvent(new Event("change"));
-  }
+  if(elementid == null || newvalue == null) return;
+  var sliderelement = document.getElementById(String(elementid));
+  sliderelement.value = newvalue;
+  sliderelement.dispatchEvent(new Event("change"));
 }
 
-function SetProgressBarByTime(elementid, addvalue, interval)  {
-  var ele = document.getElementById(String(elementid));
-  var elementid = setInterval(() => {
-    let val = parseFloat(ele.value);
-    if(val <= parseFloat(ele.min) || val >= parseFloat(ele.max)) { ClearProgressBarInterval(elementid);return; }
-    SetProgressBar(elementid, val + parseFloat(addvalue));
-    // console.log(val + parseFloat(addvalue));
+function SetProgressBarByTime(elementid, addvalue, interval, stopvalue)  {
+  if(elementid == null || addvalue == null || addvalue <= 0 || interval == null) return;
+  let sliderelement = document.getElementById(String(elementid));
+  let valuemax = parseFloat(sliderelement.max);
+  if(stopvalue != null) valuemax = parseFloat(stopvalue);
+  let sliderinterval = setInterval(() => {
+    let slidervalue = parseFloat(sliderelement.value);
+    if((valuemax - slidervalue) < addvalue) addvalue = valuemax - slidervalue;
+    if(slidervalue >= valuemax) { ClearProgressBarInterval(sliderinterval);return; }
+    SetProgressBar(elementid, slidervalue + parseFloat(addvalue));
+    console.log(slidervalue + parseFloat(addvalue));
+  }, interval);
+}
+
+function SetProgressBarByTimeDecrease(elementid, minusvalue, interval, stopvalue)  {
+  if(elementid == null || minusvalue == null || minusvalue >= 0 || interval == null) return;
+  let sliderelement = document.getElementById(String(elementid));
+  let valuemin = parseFloat(sliderelement.min);
+  if(stopvalue != null) valuemin = parseFloat(stopvalue);
+  let sliderinterval = setInterval(() => {
+    let slidervalue = parseFloat(sliderelement.value);
+    if((valuemin - slidervalue) > minusvalue) minusvalue = valuemin - slidervalue;
+    if(slidervalue <= valuemin) { ClearProgressBarInterval(sliderinterval);return; }
+    SetProgressBar(elementid, slidervalue + parseFloat(minusvalue));
+    console.log(slidervalue + parseFloat(minusvalue));
   }, interval);
 }
 
@@ -590,15 +600,16 @@ function ClearProgressBarInterval(intervalname)  {
 }
 
 function DisableProgressBar(elementid) {
-  var ele = document.getElementById(String(elementid));
-  ele.setAttribute('disabled', true);
-  ele.setAttribute('showvalue', true);
+  let sliderelement = document.getElementById(String(elementid));
+  sliderelement.setAttribute('disabled', true);
+  sliderelement.setAttribute('showvalue', true);
+  sliderelement.dispatchEvent(new Event("change"));
 }
 
 function ActiveProgressBar(elementid) {
-  var ele = document.getElementById(String(elementid));
-  ele.removeAttribute('disabled');
-  ele.removeAttribute('showvalue');
+  let sliderelement = document.getElementById(String(elementid));
+  sliderelement.removeAttribute('disabled');
+  sliderelement.removeAttribute('showvalue');
+  sliderelement.dispatchEvent(new Event("change"));
 }
 //#endregion ##############################
-

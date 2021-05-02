@@ -2,9 +2,6 @@
 
 html {
 	margin: 0;
-}
-
-:root {
 	font-size: 16px;
 }
 
@@ -55,7 +52,7 @@ body {
 	margin: 0;
 }
 
-body:not(.style-scope)[dark] {
+body[dark] {
 	--Background: #181818;
 	--Primary: 187, 134, 252;
 	--Secondary: 3, 218, 198;
@@ -74,7 +71,7 @@ body:not(.style-scope)[dark] {
 	--hover: brightness(80%);
 }
 
-body:not(.style-scope)[blue] {
+body[blue] {
 	--Background: #112233;
 	--Primary: 187, 134, 252;
 	--Secondary: 3, 218, 198;
@@ -92,7 +89,7 @@ body:not(.style-scope)[blue] {
 	--hover: brightness(80%);
 }
 
-body:not(.style-scope)[skin] {
+body[skin] {
 	--Background: #FEDBD0;
 	--Primary: 187, 134, 252;
 	--Secondary: 3, 218, 198;
@@ -111,7 +108,7 @@ body:not(.style-scope)[skin] {
 	--hover: brightness(120%);
 }
 
-body:not(.style-scope)[greyish] {
+body[greyish] {
 	--Background: #344955;
 	--Primary: 187, 134, 252;
 	--Secondary: 3, 218, 198;
@@ -129,9 +126,10 @@ body:not(.style-scope)[greyish] {
 	--hover: brightness(80%);
 }
 
-body:not(.style-scope)[flat] {
+body[flat] {
 	--component-shadow: none;
 }
+
 *:disabled {
 	color: rgba(var(--OnBackground),var(--Disabled-text)) !important;
 	cursor: default;
@@ -145,9 +143,6 @@ body:not(.style-scope)[flat] {
 
 
 /*
-	TODO: 
-		- fix hover effect on components over/same as db06 [0]
-		- ...
 	List:
 	1. Components
 		1.1 Checkbox
@@ -173,7 +168,6 @@ body:not(.style-scope)[flat] {
 */
 
 :is(textarea, input, select, th, tr, .checkmark,button, .inputfile + label, .custom-select, .select-items div):hover:not(.disabled-element,.bcolor-custom,input[type=range]), .same-as-selected {
-	/* filter: var(--hover) !important; */
 	background-color: rgba(var(--OnBackground), var(--dp06)) !important;
 }
 :is(.bcolor-custom):hover {
@@ -190,7 +184,6 @@ input {
 	padding: var(--padding-component);
 	border: none;
 	border-radius: var(--borderradius-component);
-	/* text-align: center; */
 }
 
 select {
@@ -483,7 +476,7 @@ table thead th {
 }
 
 .tags-input .tag:hover {
-    background-color: var(--Primary); /*#3af*/
+    background-color: rgb(var(--Primary)); /*#3af*/
     color: rgba(var(--OnPrimary),var(--High-emphasis)) !important;
 }
 
@@ -639,7 +632,7 @@ table thead th {
 */
 
 .slider {
-	height: 0.5rem; /* 8px*/
+	height: 0.5rem;
     width: 100%;
 	font-size: 1rem; /*changes size of slider thumb*/
 }
@@ -801,7 +794,7 @@ input[type=range]::-webkit-slider-thumb:active {
 	text-decoration: none;
 	cursor: pointer;
 	padding: 0.5rem 1rem;
-	color: var(--Primary);
+	color: rgba(var(--OnBackground), var(--High-emphasis));
 	border: 1.5px solid rgb(var(--Primary));
 	border-radius: var(--borderradius-component);
 	transition: 0.2s;
@@ -831,6 +824,7 @@ input[type=range]::-webkit-slider-thumb:active {
 
 ::-webkit-scrollbar {
     width: 8px;
+	height: 8px;
     border-radius: 10px;
 }
    
