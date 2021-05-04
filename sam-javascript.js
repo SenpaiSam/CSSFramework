@@ -142,30 +142,16 @@ Array.prototype.forEach.call(inputs, function(input)
 //#endregion #################################
 
 //#region  ################ Tags #################
-// var TagInputData = [
-//   {
-//     name: "tagPerson",
-//     onlyfromData: true,
-//     multipleData: false,
-//     // removeTagformDataifUsed: false,
-//     addData: ["01 Hello", "02 Lol", "02 Du","Kek"],
-//   },
-//   {
-//     name: "tagPersonLol",
-//     onlyfromData: false,
-//     multipleData: true,
-//     // removeTagformDataifUsed: false,
-//     addData: ["Hello", "Du"],
-//   }
-// ];
 
 [].forEach.call(document.getElementsByClassName('tags-input'), function (el) {
+  if(typeof TagInputData === 'undefined' || TagInputData == null) {
+    console.error('No TagInputData found! Look in documentation: https://senpaisam.github.io/CSSFramework/documentation.html#tagssystem');
+    return;
+  }
   let hiddenInput = document.createElement('input'),
       datalist = document.createElement('datalist'),
       mainInput = document.createElement('input'),
       tags = [];
-
-  //console.log(el);
 
   hiddenInput.setAttribute('type', 'hidden');
   hiddenInput.setAttribute('name', el.getAttribute('data-name'));
@@ -613,3 +599,43 @@ function ActiveProgressBar(elementid) {
   sliderelement.dispatchEvent(new Event("change"));
 }
 //#endregion ##############################
+
+
+//#region ######### Dropdown / Modal ###########
+
+var dropdownbg = document.getElementById("Dropdownbg");
+var activDropdown;
+
+function OpenDropdown(dropdownbtn) {
+  dropdownbg.style.display = "block";
+  dropdownbtn.nextElementSibling.firstElementChild.style.display = "block";
+  activDropdown = dropdownbtn.nextElementSibling.firstElementChild;
+}
+
+function CloseDropdown() {
+  dropdownbg.style.display = "none";
+  activDropdown.style.display = "none";
+  activDropdown = null;
+}
+
+var activModal;
+function OpenModal(modalbtn) {
+  modalbtn.nextElementSibling.style.display = "block";
+  activModal = modalbtn.nextElementSibling;
+}
+
+function CloseModal() {
+  activModal.style.display = "none";
+  activModal = null;
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == activModal) {
+    CloseModal();
+  }
+  if (event.target == dropdownbg) {
+    CloseDropdown();
+  }
+}
+//#endregion

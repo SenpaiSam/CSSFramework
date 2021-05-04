@@ -52,7 +52,7 @@ body {
 	margin: 0;
 }
 
-body[dark] {
+[dark] {
 	--Background: #181818;
 	--Primary: 187, 134, 252;
 	--Secondary: 3, 218, 198;
@@ -69,9 +69,11 @@ body[dark] {
     --sliderthumbcolor: var(--Primary);
 
 	--hover: brightness(80%);
+	background-color: var(--Background);
+	color: rgba(var(--OnBackground),var(--High-emphasis));
 }
 
-body[blue] {
+[blue] {
 	--Background: #112233;
 	--Primary: 187, 134, 252;
 	--Secondary: 3, 218, 198;
@@ -87,9 +89,11 @@ body[blue] {
     --sliderthumbcolor: var(--OnBackground);
 
 	--hover: brightness(80%);
+	background-color: var(--Background);
+	color: rgba(var(--OnBackground),var(--High-emphasis));
 }
 
-body[skin] {
+[skin] {
 	--Background: #FEDBD0;
 	--Primary: 187, 134, 252;
 	--Secondary: 3, 218, 198;
@@ -106,9 +110,11 @@ body[skin] {
     --sliderthumbcolor: var(--OnBackground);
 
 	--hover: brightness(120%);
+	background-color: var(--Background);
+	color: rgba(var(--OnBackground),var(--High-emphasis));
 }
 
-body[greyish] {
+[greyish] {
 	--Background: #344955;
 	--Primary: 187, 134, 252;
 	--Secondary: 3, 218, 198;
@@ -124,9 +130,11 @@ body[greyish] {
     --sliderthumbcolor: var(--OnBackground);
 
 	--hover: brightness(80%);
+	background-color: var(--Background);
+	color: rgba(var(--OnBackground),var(--High-emphasis));
 }
 
-body[flat] {
+[flat] {
 	--component-shadow: none;
 }
 
@@ -155,6 +163,8 @@ body[flat] {
 		1.8 Progress
 		1.9 Navbar
 		1.10 Header
+		1.11 Dropdown
+		1.12 Modal
 	2. html main components
 	3. Classes
 		3.1 Card
@@ -167,14 +177,11 @@ body[flat] {
 	1. Components
 */
 
-:is(textarea, input, select, th, tr, .checkmark,button, .inputfile + label, .custom-select, .select-items div):hover:not(.disabled-element,.bcolor-custom,input[type=range]), .same-as-selected {
+:is(textarea, input, select, th, tr, .checkmark,button, .inputfile + label, .custom-select, .select-items div,input[type=range]):hover:not(.disabled-element,.bcolor-custom), .same-as-selected {
 	background-color: rgba(var(--OnBackground), var(--dp06)) !important;
 }
 :is(.bcolor-custom):hover {
 	filter: var(--hover) !important;
-}
-:is(input[type=range]):hover {
-	background-color: rgba(var(--OnBackground), var(--dp24)) !important;
 }
 
 input {
@@ -233,7 +240,7 @@ button {
 */
 
 /* Customize the label (the container) */
-.container {
+.container-checkbox {
 	position: relative;
 	cursor: pointer;
 	font-size: 20px;
@@ -241,7 +248,7 @@ button {
 }
   
 /* Hide the browser's default checkbox */
-.container input {
+.container-checkbox input {
 	position: absolute;
 	opacity: 0;
 	cursor: pointer;
@@ -253,7 +260,6 @@ button {
 .checkmark {
 	position: absolute;
 	bottom: 0.175em;
-	margin-left: 0.6em;
 	height: 1em;
 	width: 1em;
 	background-color: rgba(var(--OnBackground), var(--dp06));
@@ -263,7 +269,7 @@ button {
 }
   
 /* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
+.container-checkbox:hover input ~ .checkmark {
 	/* filter: var(--hover); */
 	background-color: rgba(var(--OnBackground), var(--dp24)) !important;
 }
@@ -281,12 +287,12 @@ button {
 }
   
 /* Show the checkmark when checked */
-.container input:checked ~ .checkmark:after {
+.container-checkbox input:checked ~ .checkmark:after {
 	display: block;
 }
 
 /* Style the checkmark/indicator */
-.container .checkmark:after {
+.container-checkbox .checkmark:after {
 	height: .42em;
 	width: .18em;
 	left: .335em;
@@ -673,7 +679,7 @@ input[type=range] {
     margin: auto;
     outline: none;
     padding: 0;
-	background-color: rgba(var(--OnBackground), var(--dp06));
+	background-color: rgba(var(--OnBackground), var(--dp01));
     transition: background-color 0.15s ease-in;
     background-image: var(--slidertrackcolor);
     background-size: 50% 100%;
@@ -819,6 +825,106 @@ input[type=range]::-webkit-slider-thumb:active {
 
 
 /*
+	1.11 Dropdown
+*/
+
+.Dropdownbg {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto; /* Enable scroll if needed */
+}
+
+.dropdown-content {
+    text-align: start;
+    right: 0;
+    display: none;
+    position: absolute;
+	top: 0;
+	left: 0;
+    background-color: var(--Background);
+    min-width: 160px;
+    max-width: 280px;
+    border-radius: var(--borderradius-component);
+    z-index: 3;
+    margin-top: 0.6em;
+	box-shadow: var(--component-shadow);
+}
+
+.dropdown-content > * {
+    max-height: 48px;
+    max-width: 280px;
+    color: rgba(var(--OnBackground),var(--High-emphasis));
+    padding: 14.5px 16px;
+    text-decoration: none;
+    display: block;
+    margin: 0;
+    cursor: pointer;
+}
+
+.dropdown-content > div > div:nth-child(2) {
+    float: right;
+	bottom: -0.3em;
+    margin: 0 auto;
+	margin-right: var(--padding-component);
+	width: 17px;
+    height: 17px;
+}
+
+.dropdown-content > *:hover {background-color: rgba(var(--OnBackground),var(--dp01));} 
+
+/* Show the dropdown menu on hover */
+/* .dropdown:hover .dropdown-content {display: block;} */
+
+
+/*
+	1.12 Modal
+*/
+
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+	background-color: var(--Background);
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: calc(var(--padding-component) * 2);
+	/* border: 1px solid #888; */
+	width: 80%; /* Could be more or less, depending on screen size */
+	border-radius: var(--borderradius-component);
+	box-shadow: var(--component-shadow);
+}
+
+.modal-close {
+	color: rgba(var(--OnBackground), var(--Medium-emphasis));
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+	color: rgba(var(--OnBackground), var(--High-emphasis));
+	text-decoration: none;
+	cursor: pointer;
+}
+
+
+
+/*
 	2. html main components
 */
 
@@ -885,15 +991,15 @@ input[type=range]::-webkit-slider-thumb:active {
 }
 
 .color-confirm {
-	color: rgba(var(--Quit), var(--High-emphasis));
+	color: rgba(var(--Confirm), var(--High-emphasis));
 }
 
 .color-primary {
-	color: rgba(var(--Quit), var(--High-emphasis));
+	color: rgba(var(--Primary), var(--High-emphasis));
 }
 
 .color-secondary {
-	color: rgba(var(--Quit), var(--High-emphasis));
+	color: rgba(var(--Secondary), var(--High-emphasis));
 }
 
 /*

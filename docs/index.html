@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAM-Framework</title>
 </head>
-<!-- <link rel="stylesheet" href="../sam-style.css"> DEV -->
+<!--<link rel="stylesheet" href="../sam-style.css"> FOR DEV -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SenpaiSam/CSSFramework@latest/sam-style.min.css">
 
 <body>
+    <div id="Dropdownbg" class="Dropdownbg"></div>
+
     <!-- Header -->
     <header class="header"> <!-- color-primary -->
         <nav class="flex-wrap">
@@ -98,9 +100,9 @@
         </div>
         <br><br>
         <!-- Checkbox -->
-        <label class="container" for="checkboxid">Checkbox:
+        <label class="container-checkbox" for="checkboxid">Checkbox:
             <input type="checkbox" id="checkboxid" checked>
-            <span class="checkmark"></span>
+            <span class="checkmark" style="margin-left: 0.6em;"></span>
         </label>
         <br><br>
         <!-- Select with Datalist -->
@@ -198,26 +200,54 @@
             <span class="slidertitle"></span>
         </div>
         <br><br>
+        <!-- Dropdown -->
+        <button onclick="OpenDropdown(this)">Open Dropdown</button>
+        <div style="position: relative;">
+            <div class="dropdown-content">
+                <a href="#">Home</a>
+                <div>
+                    <label style="cursor: pointer;" for="checkboxiddropdown">Checkbox</label>
+                    <div class="container-checkbox">
+                        <input type="checkbox" id="checkboxiddropdown" checked>
+                        <span class="checkmark"></span>
+                    </div>
+                </div>
+                <p>Test1</p>
+                <p>Test2</p>
+            </div>
+        </div>
+        <br><br>
+        <!-- Modal -->
+        <button onclick="OpenModal(this)">Open Modal</button>
+        <div class="modal">
+            <div class="modal-content">
+                <span onclick="CloseModal()" class="modal-close">&times;</span>
+                <p>Some text in the Modal..</p>
+            </div>
+        </div>
+        <br><br>
+
+
     </div>
 </body>
 <script>
     var TagInputData = [
-    {
-        name: "tagPerson",
-        onlyfromData: true,
-        multipleData: false,
-        // removeTagformDataifUsed: false,
-        addData: ["01 Hello", "02 Lol", "02 Du","Kek"],
-    },
-    {
-        name: "tagPersonLol",
-        onlyfromData: false,
-        multipleData: true,
-        // removeTagformDataifUsed: false,
-        addData: ["Hello", "Du"],
-    }
+        {
+            name: "tagPerson",
+            onlyfromData: true,
+            multipleData: false,
+            // removeTagformDataifUsed: false,
+            addData: ["01 Hello", "02 Lol", "02 Du","Kek"],
+        },
+        {
+            name: "tagPersonLol",
+            onlyfromData: false,
+            multipleData: true,
+            // removeTagformDataifUsed: false,
+            addData: ["Hello", "Du"],
+        }
     ];
 </script>
-<!-- <script src="../sam-javascript.js"></script> DEV -->
+<!--<script src="../sam-javascript.js"></script> FOR DEV -->
 <script src="https://cdn.jsdelivr.net/gh/SenpaiSam/CSSFramework@latest/sam-javascript.min.js"></script>
 </html>

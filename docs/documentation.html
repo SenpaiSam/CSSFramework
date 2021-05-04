@@ -7,6 +7,7 @@
     <title>SAM Framework Documentation</title>
 </head>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SenpaiSam/CSSFramework@latest/sam-style.min.css">
+<!-- <link rel="stylesheet" href="../sam-style.css"> FOR DEV-->
 <link rel="stylesheet" href="samdocs.css">
 <body>
     <div class="docs-row">
@@ -36,6 +37,8 @@
                 <li><a href="#cardinput">Card input</a></li>
                 <li><a href="#tagssystem">Tags system</a></li>
                 <li><a href="#slider-progressbar">Slider / progress system</a></li>
+                <li><a href="#dropdown">Dropdown</a></li>
+                <li><a href="#modal">Modal</a></li>
             </ul>
         </div>
 
@@ -48,11 +51,11 @@
             
             <!-- CSS add own color theme -->
             <h1 id="addcustomcolortheme">Add custom color theme</h1>
-            <p>First, add your CSS theme color code before you link the CSS-Framework. Secondly add "addthemecolor('yourcolorthemename');" in your js code. (CSS color theme template below)</p>
+            <p>First, add your CSS theme color code before you link the CSS-Framework. Secondly add "addthemecolor('yourcolorthemename');" in your js code.</p>
             <div class="component-preview">
                 <div class="code">
                     <code><b>CSS:</b><br>
-                        body[yourcolorthemename] {<br>
+                        [yourcolorthemename] {<br>
                             --Background: #181818;<br>
                             --Primary: 187, 134, 252;<br>
                             --Secondary: 3, 218, 198;<br>
@@ -170,14 +173,14 @@
             <h1 id="checkbox">Checkbox</h1>
             <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
             <div class="component-preview">
-                <label class="container" for="checkboxid">Checkbox:
+                <label class="container-checkbox" for="checkboxid">Checkbox:
                     <input type="checkbox" id="checkboxid" checked>
-                    <span class="checkmark"></span>
+                    <span class="checkmark" style="margin-left: 0.6em;"></span>
                 </label>
                 <div class="code">
-                    <code>&lt;label class="container" for="checkboxid">Checkbox:<br>
+                    <code>&lt;label class="container-checkbox" for="checkboxid">Checkbox:<br>
                         &lt;input type="checkbox" id="checkboxid" checked><br>
-                        &lt;span class="checkmark">&lt;/span><br>
+                        &lt;span class="checkmark" style="margin-left: 0.6em;">&lt;/span><br>
                         &lt;/label>
                     </code>
                 </div>
@@ -388,7 +391,7 @@
 
             <!-- Tags -->
             <h1 id="tagssystem">Tags System</h1>
-            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
+            <p>The Javascript code needs to be loaded before the Framework. When adding new Taginput you need to add data in TagInputData for the Element to work.</p>
             <div class="component-preview">
                 <div name="tagPerson" class="tags-input" data-name="tags-input"></div>
                 <br><br>
@@ -456,7 +459,75 @@
                 </div>
             </div>
 
+            <!-- Dropdown -->
+            <h1 id="dropdown">Dropdown</h1>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
+            <div class="component-preview">
+                <div id="Dropdownbg" class="Dropdownbg"></div>
+
+                <button onclick="OpenDropdown(this)">Open Dropdown</button>
+                <div style="position: relative;">
+                    <div class="dropdown-content">
+                        <a href="#">Home</a>
+                        <div>
+                            <label style="cursor: pointer;" for="checkboxiddropdown">Checkbox</label>
+                            <div class="container-checkbox">
+                                <input type="checkbox" id="checkboxiddropdown" checked>
+                                <span class="checkmark"></span>
+                            </div>
+                        </div>
+                        <p>Test1</p>
+                        <p>Test2</p>
+                    </div>
+                </div>
+                <div class="code">
+                    <code>
+                        &lt;div id="Dropdownbg" class="Dropdownbg">&lt;/div><br>
+                        <br>
+                        &lt;button onclick="OpenDropdown(this)">Open Dropdown&lt;/button><br>
+                        &lt;div style="position: relative;"><br>
+                        &lt;div class="dropdown-content"><br>
+                        &lt;a href="#">Home&lt;/a><br>
+                        &lt;div><br>
+                        &lt;label style="cursor: pointer;" for="checkboxiddropdown">Checkbox&lt;/label><br>
+                        &lt;div class="container-checkbox"><br>
+                        &lt;input type="checkbox" id="checkboxiddropdown" checked><br>
+                        &lt;span class="checkmark">&lt;/span><br>
+                        &lt;/div><br>
+                        &lt;/div><br>
+                        &lt;p>Test1&lt;/p><br>
+                        &lt;p>Test2&lt;/p><br>
+                        &lt;/div><br>
+                        &lt;/div>
+                    </code>
+                </div>
+            </div>
             
+            <!-- Modal -->
+            <h1 id="modal">Modal</h1>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque mollitia quidem aut, animi ducimus fugiat officia obcaecati odio ea sit quisquam ut at! Quibusdam impedit assumenda corrupti ratione saepe.</p> -->
+            <div class="component-preview">
+                <button onclick="OpenModal(this)">Open Modal</button>
+                <div class="modal">
+                    <div class="modal-content">
+                        <span onclick="CloseModal()" class="modal-close">&times;</span>
+                        <p>Some text in the Modal..</p>
+                    </div>
+                </div>
+                <div class="code">
+                    <code>
+                        &lt;button onclick="OpenModal(this)">Open Modal&lt;/button><br>
+                        &lt;div class="modal"><br>
+                        &lt;div class="modal-content"><br>
+                        &lt;span onclick="CloseModal()" class="modal-close">&times;&lt;/span><br>
+                        &lt;p>Some text in the Modal..&lt;/p><br>
+                        &lt;/div><br>
+                        &lt;/div>
+                    </code>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </body>
@@ -479,4 +550,5 @@
     ];
 </script>
 <script src="https://cdn.jsdelivr.net/gh/SenpaiSam/CSSFramework@latest/sam-javascript.min.js"></script>
+<!-- <script src="../sam-javascript.js"></script> FOR DEV-->
 </html>
