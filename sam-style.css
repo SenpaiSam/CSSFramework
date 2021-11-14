@@ -39,7 +39,7 @@ body {
 	--borderradius-component: 0.4rem; 
 	--padding-component: 0.6rem;
 	--component-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
-	--hover: brightness(120%); /* used now only for colored buttons*/
+	--hover: brightness(120%); /* used now only for colored buttons / icon*/
 
 	/* Slider */
 	--slideropacity: 0;
@@ -165,6 +165,7 @@ body {
 		1.10 Header
 		1.11 Dropdown
 		1.12 Modal
+		1.13 Circle Slider / ProgressS 
 	2. html main components
 	3. Classes
 		3.1 Card
@@ -177,10 +178,10 @@ body {
 	1. Components
 */
 
-:is(textarea, input, select, th, tr, .checkmark,button, .inputfile + label, .custom-select, .select-items div,input[type=range]):hover:not(.disabled-element,.bcolor-custom), .same-as-selected {
+:is(textarea, input, select, th, tr, .checkmark,button, .inputfile + label, .custom-select, .select-items div,input[type=range]):hover:not(.disabled-element,.bcolor-custom,.bicon-only), .same-as-selected {
 	background-color: rgba(var(--OnBackground), var(--dp06)) !important;
 }
-:is(.bcolor-custom):hover {
+:is(.bcolor-custom, .bicon-only):hover {
 	filter: var(--hover) !important;
 }
 
@@ -411,10 +412,9 @@ table thead th {
 }
 
 .inputfile + label {
-	margin-top: 10px;
-	margin-bottom: 10px;
-	cursor: pointer;
-	max-width: 80%;
+	/* margin-top: 10px;
+	margin-bottom: 10px; */
+	/* max-width: 80%; */
 	font-weight: 450; /*700*/
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -601,7 +601,7 @@ table thead th {
 	color: rgba(var(--OnBackground),var(--High-emphasis));
 	padding: var(--padding-component);
 	border: 1px solid transparent;
-	border-color: transparent transparent rgba(0,0,0, 0.1) transparent;
+	/* border-color: transparent transparent rgba(0,0,0, 0.1) transparent; */
 	cursor: pointer;
 }
 
@@ -850,6 +850,7 @@ input[type=range]::-webkit-slider-thumb:active {
     min-width: 160px;
     max-width: 280px;
     border-radius: var(--borderradius-component);
+	border: 1px solid rgba(var(--OnBackground),var(--Disabled-text));
     z-index: 3;
     margin-top: 0.6em;
 	box-shadow: var(--component-shadow);
@@ -866,8 +867,16 @@ input[type=range]::-webkit-slider-thumb:active {
     cursor: pointer;
 }
 
-.dropdown-content > div > div:nth-child(2) {
-    float: right;
+.dropdown-content > *:first-child {
+	border-radius: var(--borderradius-component) var(--borderradius-component) 0 0;
+}
+
+.dropdown-content > *:last-child {
+	border-radius: 0 0 var(--borderradius-component) var(--borderradius-component);
+}
+
+.dropdown-content > label > div:nth-child(2) {
+	float: right;
 	bottom: -0.3em;
     margin: 0 auto;
 	margin-right: var(--padding-component);
@@ -923,6 +932,52 @@ input[type=range]::-webkit-slider-thumb:active {
 }
 
 
+/*
+	1.13 Circle Slider / Progress
+*/
+
+.circle {
+	width: 100px;
+	height: 100px;
+	border: 3px solid rgba(var(--OnBackground), var(--dp01));
+	border-radius: 50%;
+	position: relative;
+}
+   
+.pie {
+	position: relative;
+	width: 120px;
+	height: 120px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%) rotate(-90deg);
+}
+.pie svg circle {
+	fill: transparent;
+	stroke: rgb(var(--Primary));
+	stroke-width: 14;
+	/* stroke-dasharray: 275;
+	stroke-dashoffset: 235; */
+	/* stroke-dasharray: 0; */
+	/*stroke-dashoffset: 100; /*calc(360/2);
+	/* animation: pieChart 3.8s linear forwards; */
+}
+   
+@keyframes pieChart {
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+
+.counter {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	color: rgb(var(--Primary));
+	font-weight: 500;
+}
+
 
 /*
 	2. html main components
@@ -965,6 +1020,15 @@ input[type=range]::-webkit-slider-thumb:active {
 /*
 	3.2 Button styles / Text style
 */
+
+.bicon-only {
+	background-color: transparent;
+	box-shadow: none;
+}
+
+.bicon-only > svg {
+	fill: rgba(var(--OnBackground), var(--High-emphasis));
+}
 
 .bcolor-quit {
 	background-color: rgb(var(--Quit));
@@ -1036,6 +1100,11 @@ input[type=range]::-webkit-slider-thumb:active {
 
 .text-center {
 	text-align: center;
+}
+
+.flex-row {
+	display: flex;
+	flex-direction: row;
 }
 
 .flex-wrap {

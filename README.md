@@ -20,3 +20,5 @@
 - Header
 - Navigation
 - Slider / progress bar
+- Modal
+- Dropdown menu

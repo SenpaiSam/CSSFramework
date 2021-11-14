@@ -1,9 +1,33 @@
 /*CSS Sam Framework by Samuel B.*/
+/* Content List:
+  1. Table
+  2. Collapsible
+  3. Input File
+  4. Tag system
+  5. Custom Select
+  6. Slider / Progress
+  7. Dropdown / Modal
+  8. Circle Slider / Progress
+*/
+
+window.onload = () => {
+  themecolor(samgetCookie('themecolor'));
+  if(samgetCookie('flatdesign') == 'true') {
+    document.body.setAttribute('flat', true);
+  } else {
+    document.body.removeAttribute("flat");
+  }
+};
 
 var colorthemes = ['light', 'dark', 'blue', 'skin', 'greyish'];
 
 function flatswitch() {
-  document.body.toggleAttribute("flat");
+  document.body.toggleAttribute('flat');
+  if(document.body.hasAttribute('flat')) {
+    document.cookie = `flatdesign=true`;
+  } else {
+    document.cookie = `flatdesign=false`;
+  }
 }
 
 function themecolor(val) {
@@ -11,15 +35,23 @@ function themecolor(val) {
     document.body.removeAttribute(v);
   });
   document.body.setAttribute(val,true);
+  document.cookie = `themecolor=${val}`;
 }
 
 function addthemecolor(val) {
   colorthemes.push(val);
 }
 
+function samgetCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+  
+}
+
 // document.getElementById('inputid').toggleAttribute('disabled');
 
-//#region  ############### Table ##################
+//#region  ############### 1. Table ##################
 
 function tablesearchfilter() {
     // Declare variables
@@ -99,7 +131,7 @@ function sortTable(n) {
 }
 //#endregion ####################################
 
-//#region  ################ collapsible #################
+//#region  ################ 2. Collapsible #################
 
 var coll = document.getElementsByClassName("collapsible");
 var i;
@@ -117,7 +149,7 @@ for (i = 0; i < coll.length; i++) {
 
 //#endregion #################################
 
-//#region  ################ Input File #################
+//#region  ################ 3. Input File #################
 var inputs = document.querySelectorAll('.inputfile');
 Array.prototype.forEach.call(inputs, function(input)
 {
@@ -141,7 +173,7 @@ Array.prototype.forEach.call(inputs, function(input)
 
 //#endregion #################################
 
-//#region  ################ Tags #################
+//#region  ################ 4. Tag system #################
 
 [].forEach.call(document.getElementsByClassName('tags-input'), function (el) {
   if(typeof TagInputData === 'undefined' || TagInputData == null) {
@@ -304,7 +336,7 @@ Array.prototype.forEach.call(inputs, function(input)
 
 //#endregion #################################
 
-//#region  ################ Custom Select #################
+//#region  ################ 5. Custom Select #################
 
 initCustomSelect();
 // Custom Selector
@@ -431,23 +463,18 @@ document.addEventListener("click", closeAllSelect);
 
 //#endregion #################################
 
-//#region ####################### Slider / Progress ############################
+//#region ####################### 6. Slider / Progress ############################
 
 [].forEach.call(document.getElementsByClassName("slider"), function (slider) {
-  var slidertitle = slider.nextElementSibling;
-  
-  var sliderOffsetX = slider.getBoundingClientRect().left - document.documentElement.getBoundingClientRect().left;
-  //var sliderOffsetY = slider.getBoundingClientRect().top - document.documentElement.getBoundingClientRect().top;
-  // var sliderWidth = slider.offsetWidth - 1;
-  
+  let slidertitle = slider.nextElementSibling;
+  let sliderOffsetX = slider.getBoundingClientRect().left - document.documentElement.getBoundingClientRect().left;
+
   checkProgressBardisabled();
   UpdateProgressBar();
   
   window.addEventListener('resize', TooltipSliderResize);
   function TooltipSliderResize() {
     sliderOffsetX = slider.getBoundingClientRect().left - document.documentElement.getBoundingClientRect().left;
-    //sliderOffsetY = slider.getBoundingClientRect().top - document.documentElement.getBoundingClientRect().top;
-    // sliderWidth = slider.offsetWidth - 1;
     checkProgressBardisabled();
   }
   
@@ -483,17 +510,10 @@ document.addEventListener("click", closeAllSelect);
     if(!UpdatetitleContentOnHover) {
       valueHover = slider.value;
     }
-    // var valueHover = Math.round(currentMouseXPos / sliderWidth * 100 + 1);
-    //var valueHover = (currentMouseXPos / sliderWidth * 100).toFixed(2);
-    // this...
-    // if(valueHover < 1) valueHover = 0;
-    // ... and this are to make it easier to hover on the "0" and "100" positions
-    // if(valueHover > 99) valueHover = 100;
   
     if(100 >= valueHover && valueHover >= 0) {
       slidertitle.style.transition = "none";
       slidertitle.innerHTML = valueHover;
-      //slidertitle.style.top = sliderOffsetY - 15 + 'px';
       slidertitle.style.left = currentMouseXPos - 5  + 'px';
     }
     // Moves Tooltip, so it is not half out of screen on 0 and 100
@@ -600,10 +620,9 @@ function ActiveProgressBar(elementid) {
 }
 //#endregion ##############################
 
+//#region ######### 7. Dropdown / Modal ###########
 
-//#region ######### Dropdown / Modal ###########
-
-var dropdownbg = document.getElementById("Dropdownbg");
+const dropdownbg = document.getElementById("Dropdownbg");
 var activDropdown;
 
 function OpenDropdown(dropdownbtn) {
@@ -629,13 +648,114 @@ function CloseModal() {
   activModal = null;
 }
 
-// When the user clicks anywhere outside of the modal, close it
+//#endregion
+
 window.onclick = function(event) {
+  // When the user clicks anywhere outside of the modal, close it
   if (event.target == activModal) {
     CloseModal();
   }
   if (event.target == dropdownbg) {
     CloseDropdown();
   }
+  //.
 }
-//#endregion
+
+//#region ############ 8. Circle Slider / Prpgress #############
+
+const el2 = document.getElementById('test1');
+document.getElementById('testcirclebtn').addEventListener('click', () => {
+  // el2.setAttribute('progress', 40);
+  el2.attributeChangedCallbackOverTick('progress', 10, 10, 1000);
+});
+
+class ProgressRing extends HTMLElement {
+  constructor() {
+    super();
+    const stroke = this.getAttribute('stroke');
+    const radius = this.getAttribute('radius');
+    const color = this.getAttribute('color');
+    const normalizedRadius = radius - stroke * 2;
+    this._circumference = normalizedRadius * 2 * Math.PI;
+
+    this._root = this.attachShadow({mode: 'open'});
+    this._root.innerHTML = `
+      <svg
+        class="progress-circle"
+        height="${radius * 2}"
+        width="${radius * 2}"
+       >
+         <circle
+           stroke="${color}"
+           stroke-dasharray="${this._circumference} ${this._circumference}"
+           style="stroke-dashoffset:${this._circumference}"
+           stroke-width="${stroke}"
+           fill="transparent"
+           r="${normalizedRadius}"
+           cx="${radius}"
+           cy="${radius}"
+        />
+        <circle
+           stroke="rgba(var(--OnBackground),var(--dp01))"
+           stroke-width="${stroke}"
+           fill="transparent"
+           r="${normalizedRadius}"
+           cx="${radius}"
+           cy="${radius}"
+        />
+      </svg>
+
+      <style>
+        circle {
+          transition: stroke-dashoffset 0.35s;
+          transform: rotate(-90deg);
+          transform-origin: 50% 50%;
+        }
+      </style>
+    `;
+  }
+  
+  setProgress(percent) {
+    const offset = this._circumference - (percent / 100 * this._circumference);
+    const circle = this._root.querySelector('circle');
+    circle.style.strokeDashoffset = offset; 
+  }
+
+  static get observedAttributes() {
+    return ['progress'];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === 'progress') {
+      this.setProgress(newValue);
+    }
+  }
+
+  attributeChangedCallbackOverTick(name, startValue, addValue, tickrate = 1000) {
+    if (name === 'progress') {
+      let progress = startValue;
+      const interval = setInterval(() => {
+          progress += addValue;
+          this.setProgress(progress);
+          if (progress >= 100)
+            clearInterval(interval);
+        }, tickrate);
+      
+    }
+  }
+}
+
+window.customElements.define('progress-ring', ProgressRing);
+
+// emulate progress attribute change
+// let progress = 0;
+// const el = document.querySelector('progress-ring');
+
+// const interval = setInterval(() => {
+//   progress += 10;
+//   el.setAttribute('progress', progress);
+//   if (progress === 100)
+//     clearInterval(interval);
+// }, 1000);
+
+//#endregion #########################
